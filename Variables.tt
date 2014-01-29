@@ -1,0 +1,5 @@
+﻿<# // Use NONE to generate solution without client project
+   // Use WINDOWS to generate a solution with a stub project entry for Windows Store
+   // Use PHONE to generate solution with a stub project entry for Windows Phone
+#>
+<#@ template compilerOptions="/d:WINDOWS" debug="false" hostspecific="false" language="C#" #>
