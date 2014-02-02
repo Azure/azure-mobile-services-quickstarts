@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Linq;
+using Microsoft.WindowsAzure.Mobile.Service.Tables;
 using ZUMOAPPNAMEService.DataObjects;
 
 namespace ZUMOAPPNAMEService.Models
@@ -31,8 +33,9 @@ namespace ZUMOAPPNAMEService.Models
                 modelBuilder.HasDefaultSchema(Schema);
             }
 
-            modelBuilder.Entity<TodoItem>().Property(t => t.Id)
-               .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Conventions.Add(
+                new AttributeToColumnAnnotationConvention<TableColumnAttribute, string>(
+                    "ServiceTableColumn", (property, attributes) => attributes.Single().ColumnType.ToString()));
         }
     }
 
