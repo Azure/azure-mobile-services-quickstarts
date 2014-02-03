@@ -65,7 +65,7 @@
       <DependentUpon>Global.asax</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Quickstart\ZUMOAPPNAMEService\Models\TodoItemContext.cs">
+    <Content Include="Quickstart\ZUMOAPPNAMEService\Models\ZUMOAPPNAMEContext.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Quickstart\ZUMOAPPNAMEService\Properties\AssemblyInfo.cs">

@@ -7,7 +7,7 @@ using ZUMOAPPNAMEService.DataObjects;
 namespace ZUMOAPPNAMEService.Models
 {
 
-    public class TodoItemContext : DbContext
+    public class ZUMOAPPNAMEContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -16,7 +16,7 @@ namespace ZUMOAPPNAMEService.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
 
-        public TodoItemContext(string schema)
+        public ZUMOAPPNAMEContext(string schema)
             : base("Name=MS_TableConnectionString")
         {
             Schema = schema;

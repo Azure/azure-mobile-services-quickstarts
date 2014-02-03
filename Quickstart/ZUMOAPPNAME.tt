@@ -8,8 +8,14 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZUMOAPPNAMEService", "ZUMOAPPNAMEService\ZUMOAPPNAMEService.csproj", "{209FA716-A7AD-4095-BD70-C8710FC66FA7}"
 EndProject
 <#
-#if WINDOWS || PHONE #>
+#if WINDOWS_CS || PHONE #>
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZUMOAPPNAME", "ZUMOAPPNAME\ZUMOAPPNAME.csproj", "{A1386585-E675-4A33-967D-52EA3DC25308}"
+EndProject
+<#
+#endif #>
+<#
+#if WINDOWS_JS #>
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "ZUMOAPPNAME", "ZUMOAPPNAME\ZUMOAPPNAME.jsproj", "{A1386585-E675-4A33-967D-52EA3DC25308}"
 EndProject
 <#
 #endif #>
@@ -24,7 +30,7 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
 <#
-#if WINDOWS || NONE #>
+#if WINDOWS_CS || WINDOWS_JS || NONE #>
 		Debug|x64 = Debug|x64
 <#
 #endif #>
@@ -32,7 +38,7 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|ARM = Release|ARM
 <#
-#if WINDOWS || NONE #>
+#if WINDOWS_CS || WINDOWS_JS || NONE #>
 		Release|x64 = Release|x64
 <#
 #endif #>
@@ -48,7 +54,7 @@ Global
 		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Release|ARM.ActiveCfg = Release|Any CPU
 		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Release|x86.ActiveCfg = Release|Any CPU
 <#
-#if WINDOWS || PHONE #>
+#if WINDOWS_CS || WINDOWS_JS || PHONE #>
 		{A1386585-E675-4A33-967D-52EA3DC25308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A1386585-E675-4A33-967D-52EA3DC25308}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1386585-E675-4A33-967D-52EA3DC25308}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -69,12 +75,12 @@ Global
 		{A1386585-E675-4A33-967D-52EA3DC25308}.Release|x86.Deploy.0 = Release|x86
 <#
 #endif 
-#if WINDOWS || NONE #>
+#if WINDOWS_CS || WINDOWS_JS || NONE #>
 		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Release|x64.ActiveCfg = Release|Any CPU
 <#
 #endif 
-#if WINDOWS #>
+#if WINDOWS_CS || WINDOWS_JS #>
 		{A1386585-E675-4A33-967D-52EA3DC25308}.Debug|x64.ActiveCfg = Debug|x64
 		{A1386585-E675-4A33-967D-52EA3DC25308}.Debug|x64.Build.0 = Debug|x64
 		{A1386585-E675-4A33-967D-52EA3DC25308}.Debug|x64.Deploy.0 = Debug|x64

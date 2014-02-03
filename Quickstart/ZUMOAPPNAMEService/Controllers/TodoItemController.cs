@@ -14,7 +14,7 @@ namespace ZUMOAPPNAMEService.Controllers
         protected override void Initialize(HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
-            TodoItemContext context = new TodoItemContext(Services.Settings.Name);
+            ZUMOAPPNAMEContext context = new ZUMOAPPNAMEContext(Services.Settings.Name);
             DomainManager = new EntityDomainManager<TodoItem>(context, Request, Services);
         }
 

@@ -18,7 +18,7 @@ namespace ZUMOAPPNAMEService
 
             ServiceConfig.Initialize(new ConfigBuilder(options, Initialize));
 
-            Database.SetInitializer(new TodoItemInitializer());
+            Database.SetInitializer(new ZUMOAPPNAMEInitializer());
         }
 
         public static void Initialize(HttpConfiguration config)
@@ -28,9 +28,9 @@ namespace ZUMOAPPNAMEService
 
     }
 
-    public class TodoItemInitializer : DropCreateDatabaseIfModelChanges<TodoItemContext>
+    public class ZUMOAPPNAMEInitializer : DropCreateDatabaseIfModelChanges<ZUMOAPPNAMEContext>
     {
-        protected override void Seed(TodoItemContext context)
+        protected override void Seed(ZUMOAPPNAMEContext context)
         {
             List<TodoItem> todoItems = new List<TodoItem>
             {

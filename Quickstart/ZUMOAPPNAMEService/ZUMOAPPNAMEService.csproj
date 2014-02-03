@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -104,10 +105,10 @@
       <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.2.0.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Mobile.Service">
-      <HintPath>..\packages\WindowsAzure.MobileServices.Backend.1.0.98-beta\lib\net45\Microsoft.WindowsAzure.Mobile.Service.dll</HintPath>
+      <HintPath>..\packages\WindowsAzure.MobileServices.Backend.1.0.105-beta\lib\net45\Microsoft.WindowsAzure.Mobile.Service.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Mobile.Service.Tables">
-      <HintPath>..\packages\WindowsAzure.MobileServices.Backend.Tables.1.0.98-beta\lib\net45\Microsoft.WindowsAzure.Mobile.Service.Tables.dll</HintPath>
+      <HintPath>..\packages\WindowsAzure.MobileServices.Backend.Tables.1.0.105-beta\lib\net45\Microsoft.WindowsAzure.Mobile.Service.Tables.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Storage, Version=3.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -185,7 +186,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\TodoItemController.cs" />
     <Compile Include="DataObjects\TodoItem.cs" />
-    <Compile Include="Models\TodoItemContext.cs" />
+    <Compile Include="Models\ZUMOAPPNAMEContext.cs" />
     <Compile Include="ScheduledJobs\SampleJob.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -238,6 +239,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
