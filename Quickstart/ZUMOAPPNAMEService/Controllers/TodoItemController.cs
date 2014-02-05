@@ -21,13 +21,13 @@ namespace ZUMOAPPNAMEService.Controllers
         // GET tables/TodoItem
         public IQueryable<TodoItem> GetAllTodoItems()
         {
-            return ReadAll();
+            return Query();
         }
 
         // GET tables/TodoItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
         public SingleResult<TodoItem> GetTodoItem(string id)
         {
-            return Read(id);
+            return Lookup(id);
         }
 
         // PATCH tables/TodoItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
