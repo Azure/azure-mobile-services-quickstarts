@@ -16,6 +16,10 @@ namespace ZUMOAPPNAMEService.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
 
+        public ZUMOAPPNAMEContext()
+        {
+        } 
+
         public ZUMOAPPNAMEContext(string schema)
             : base("Name=MS_TableConnectionString")
         {
