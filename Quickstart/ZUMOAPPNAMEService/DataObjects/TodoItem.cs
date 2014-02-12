@@ -2,7 +2,7 @@
 
 namespace ZUMOAPPNAMEService.DataObjects
 {
-    public class TodoItem : TableData
+    public class TodoItem : EntityData
     {
         public string Text { get; set; }
 
