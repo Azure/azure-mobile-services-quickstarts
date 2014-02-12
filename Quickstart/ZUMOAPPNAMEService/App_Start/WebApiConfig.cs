@@ -25,7 +25,6 @@ namespace ZUMOAPPNAMEService
             
             Database.SetInitializer(new ZUMOAPPNAMEInitializer());
         }
-
     }
 
     public class ZUMOAPPNAMEInitializer : DropCreateDatabaseIfModelChanges<ZUMOAPPNAMEContext>
@@ -46,6 +45,5 @@ namespace ZUMOAPPNAMEService
             base.Seed(context);
         }
     }
-
 }
 

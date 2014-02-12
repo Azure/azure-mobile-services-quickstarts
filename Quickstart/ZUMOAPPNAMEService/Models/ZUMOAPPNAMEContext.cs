@@ -11,17 +11,21 @@ namespace ZUMOAPPNAMEService.Models
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
-        // If you want Entity Framework to drop and regenerate your database
+        // If you want Entity Framework to alter your database
         // automatically whenever you change your model schema, please use data migrations.
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
 
-        public ZUMOAPPNAMEContext()
+        private const string connectionStringName = "Name=MS_TableConnectionString";
+
+        public ZUMOAPPNAMEContext() : base(connectionStringName)
         {
         } 
 
-        public ZUMOAPPNAMEContext(string schema)
-            : base("Name=MS_TableConnectionString")
+        // When using code first migrations, ensure you use this constructor
+        // and you specify a schema, which is the same as your mobile service name.
+        // You can do that by registering an instance of IDbContextFactory<T>.
+        public ZUMOAPPNAMEContext(string schema) : base(connectionStringName)
         {
             Schema = schema;
         }
