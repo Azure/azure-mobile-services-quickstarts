@@ -16,14 +16,14 @@ namespace ZUMOAPPNAMEService
             // Use this class to set configuration options for your mobile service
             ConfigOptions options = new ConfigOptions();
 
-            ServiceConfig.Initialize(new ConfigBuilder(options, Initialize));
+            // Use this class to set WebAPI configuration options
+            HttpConfiguration config = ServiceConfig.Initialize(new ConfigBuilder(options));
 
+            // To display errors in the browser during developemnt, uncomment the following
+            // line. Comment it out again when you deploy your service for production use.
+            // config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
+            
             Database.SetInitializer(new ZUMOAPPNAMEInitializer());
-        }
-
-        public static void Initialize(HttpConfiguration config)
-        {
-            // Use this method to set WebAPI configuration options 
         }
 
     }
