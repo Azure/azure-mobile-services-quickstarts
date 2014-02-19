@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Web.Http;
+using Microsoft.WindowsAzure.Mobile.Service;
 using ZUMOAPPNAMEService.DataObjects;
 using ZUMOAPPNAMEService.Models;
-using Microsoft.WindowsAzure.Mobile.Service;
 
 namespace ZUMOAPPNAMEService
 {

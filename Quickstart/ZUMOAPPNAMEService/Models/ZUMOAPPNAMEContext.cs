@@ -6,7 +6,6 @@ using ZUMOAPPNAMEService.DataObjects;
 
 namespace ZUMOAPPNAMEService.Models
 {
-
     public class ZUMOAPPNAMEContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
