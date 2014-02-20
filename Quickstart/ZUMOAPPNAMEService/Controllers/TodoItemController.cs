@@ -14,7 +14,7 @@ namespace ZUMOAPPNAMEService.Controllers
         protected override void Initialize(HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
-            ZUMOAPPNAMEContext context = new ZUMOAPPNAMEContext(Services.Settings.Name);
+            ZUMOAPPNAMEContext context = new ZUMOAPPNAMEContext(Services.Settings.Name.Replace('-', '_'));
             DomainManager = new EntityDomainManager<TodoItem>(context, Request, Services);
         }
 
