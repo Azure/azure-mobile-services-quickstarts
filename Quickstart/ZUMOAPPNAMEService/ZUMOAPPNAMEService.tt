@@ -66,8 +66,9 @@
     </VisualStudio>
   </ProjectExtensions>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.0-beta1\lib\net45\EntityFramework.dll</HintPath>
+  <# var nugetPackages = this.GetQuickStartTemplates(); #>
+  	<Reference Include="Microsoft.Owin.Host.SystemWeb.dll">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Mobile.Service">
       <HintPath>..\packages\WindowsAzure.MobileServices.Backend.<#= NugetVersion#>\lib\net45\Microsoft.WindowsAzure.Mobile.Service.dll</HintPath>
@@ -78,17 +79,68 @@
     <Reference Include="Microsoft.WindowsAzure.Mobile.Service.Tables">
       <HintPath>..\packages\WindowsAzure.MobileServices.Backend.Tables.<#= NugetVersion#>\lib\net45\Microsoft.WindowsAzure.Mobile.Service.Tables.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework">
+      <HintPath><#= this.GetHintPath(nugetPackages, "EntityFramework")#>\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.1.0\lib\net45\System.Web.Http.dll</HintPath>
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.AspNet.WebApi.Core")#>\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.OData">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.1.0\lib\net45\System.Web.Http.OData.dll</HintPath>
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.AspNet.WebApi.OData")#>\System.Web.Http.OData.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Net.Http" />
+	<Reference Include="Autofac.dll">
+	  <HintPath><#= this.GetHintPath(nugetPackages, "Autofac", "net40")#>\Autofac.dll</HintPath>
+	</Reference>
+	<Reference Include="Microsoft.Owin.dll">
+	  <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.Owin")#>\Microsoft.Owin.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Net.Http.Formatting.dll">
+	  <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.AspNet.WebApi.Client")#>\System.Net.Http.Formatting.dll</HintPath>
+	</Reference>
+	<Reference Include="System.Web.Http.Tracing.dll">
+	  <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.AspNet.WebApi.Tracing")#>\System.Web.Http.Tracing.dll</HintPath>
+	</Reference>
+	<Reference Include="RazorEngine.dll">
+	  <HintPath><#= this.GetHintPath(nugetPackages, "RazorEngine")#>\RazorEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="Owin.dll">
+	  <HintPath><#= this.GetHintPath(nugetPackages, "Owin", "net40")#>\Owin.dll</HintPath>
+	</Reference>
+    <Reference Include="Newtonsoft.Json.dll">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Newtonsoft.Json")#>\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin.dll">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.AspNet.WebApi.Owin")#>\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
+	<Reference Include="Microsoft.Owin.Security.Cookies.dll">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.Owin.Security.Cookies")#>\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+	<Reference Include="Microsoft.Owin.Security.dll">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.Owin.Security")#>\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+	<Reference Include="Microsoft.Owin.Security.Facebook.dll">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.Owin.Security.Facebook")#>\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+	<Reference Include="Microsoft.Owin.Security.Google.dll">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.Owin.Security.Google")#>\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+	<Reference Include="Microsoft.Owin.Security.Twitter.dll">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.Owin.Security.Twitter")#>\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+	<Reference Include="Microsoft.Owin.Security.MicrosoftAccount.dll">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.Owin.Security.MicrosoftAccount")#>\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+	<Reference Include="System.Web.Razor.dll">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.AspNet.Razor")#>\System.Web.Razor.dll</HintPath>
+    </Reference>
+	<Reference Include="Microsoft.AspNet.Identity.Owin.dll">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.AspNet.Identity.Owin")#>\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -125,3 +177,4 @@
   </Target>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
 </Project>
+<#@ include file="..\..\FindDependentNugets.tt" #>
