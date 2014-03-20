@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
+using Microsoft.WindowsAzure.Mobile.Service;
 using Microsoft.WindowsAzure.Mobile.Service.Tables;
 using ZUMOAPPNAMEService.DataObjects;
 
@@ -14,30 +15,24 @@ namespace ZUMOAPPNAMEService.Models
         // automatically whenever you change your model schema, please use data migrations.
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
-
+        //
+        // To enable Entity Framework migrations in the cloud, please ensure that the 
+        // service name, set by the 'MS_MobileServiceName' AppSettings in the local 
+        // Web.config, is the same as the service name when hosted in Azure.
         private const string connectionStringName = "Name=MS_TableConnectionString";
 
         public ZUMOAPPNAMEContext() : base(connectionStringName)
         {
         } 
 
-        // When using code first migrations, ensure you use this constructor
-        // and you specify a schema, which is the same as your mobile service name.
-        // You can do that by registering an instance of IDbContextFactory<T>.
-        public ZUMOAPPNAMEContext(string schema) : base(connectionStringName)
-        {
-            Schema = schema;
-        }
-
-        public string Schema { get; set; }
-
         public DbSet<TodoItem> TodoItems { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            if (Schema != null)
+            string schema = ServiceSettingsDictionary.GetSchemaName();
+            if (!string.IsNullOrEmpty(schema))
             {
-                modelBuilder.HasDefaultSchema(Schema);
+                modelBuilder.HasDefaultSchema(schema);
             }
 
             modelBuilder.Conventions.Add(
