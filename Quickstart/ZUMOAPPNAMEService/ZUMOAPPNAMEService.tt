@@ -157,6 +157,30 @@
     <Reference Include="WindowsAzure.ServiceBus">
       <HintPath><#= this.GetHintPath(nugetPackages, "WindowsAzure.ServiceBus", "net40-full")#>\Microsoft.ServiceBus.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.AspNet.Identity.Core")#>\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.WindowsAzure.ConfigurationManager", "net40")#>\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IdentityModel.Tokens.Jwt">
+      <HintPath><#= this.GetHintPath(nugetPackages, "System.IdentityModel.Tokens.Jwt")#>\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath><#= this.GetHintPath(nugetPackages, "AutoMapper", "net40")#>\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath><#= this.GetHintPath(nugetPackages, "AutoMapper", "net40")#>\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.Data.Edm", "net40")#>\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.Data.OData", "net40")#>\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Spatial">
+      <HintPath><#= this.GetHintPath(nugetPackages, "System.Spatial", "net40")#>\System.Spatial.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
