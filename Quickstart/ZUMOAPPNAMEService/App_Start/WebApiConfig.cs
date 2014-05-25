@@ -25,7 +25,7 @@ namespace ZUMOAPPNAMEService
         }
     }
 
-    public class ZUMOAPPNAMEInitializer : DropCreateDatabaseIfModelChanges<ZUMOAPPNAMEContext>
+    public class ZUMOAPPNAMEInitializer : ClearDatabaseSchemaIfModelChanges<ZUMOAPPNAMEContext>
     {
         protected override void Seed(ZUMOAPPNAMEContext context)
         {
