@@ -37,6 +37,9 @@
     <Folder Include="Quickstart\ZUMOAPPNAMEService\App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Quickstart\ZUMOAPPNAME.sln">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Quickstart\ZUMOAPPNAMEService\Global.asax">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -75,17 +78,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Quickstart\.nuget\NuGet.Config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Quickstart\.nuget\NuGet.targets">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="Quickstart\ZUMOAPPNAME.tt">
-      <Generator>CustomTextTemplatingFilePreprocessor</Generator>
-      <AdditionalArgs> -a !!NugetVersion!$(NugetVersion) -out $(OutputPath)\Quickstart\ZUMOAPPNAME.sln </AdditionalArgs>
-      <LastGenOutput>$(OutputPath)\Quickstart\ZUMOAPPNAME.sln</LastGenOutput>
-    </None>
     <None Include="Quickstart\ZUMOAPPNAMEService\packages.tt">
       <Generator>CustomTextTemplatingFilePreprocessor</Generator>
       <AdditionalArgs> -a !!NugetVersion!$(NugetVersion) -a !!srcDirectory!$(MSBuildThisFileDirectory)..\..\src -out $(OutputPath)\Quickstart\ZUMOAPPNAMEService\packages.config </AdditionalArgs>
@@ -96,7 +88,6 @@
       <AdditionalArgs> -a !!NugetVersion!$(NugetVersion) -a !!srcDirectory!$(MSBuildThisFileDirectory)..\..\src -out $(OutputPath)\Quickstart\ZUMOAPPNAMEService\ZUMOAPPNAMEService.csproj </AdditionalArgs>
       <LastGenOutput>$(OutputPath)\Quickstart\ZUMOAPPNAMEService\ZUMOAPPNAMEService.csproj</LastGenOutput>
     </None>
-    <None Include="Variables.tt" />
     <None Include="FindDependentNugets.tt" />
   </ItemGroup>
   <ItemGroup>
