@@ -31,8 +31,8 @@ namespace ZUMOAPPNAMEService
         {
             List<TodoItem> todoItems = new List<TodoItem>
             {
-                new TodoItem { Id = "1", Text = "First item", Complete = false },
-                new TodoItem { Id = "2", Text = "Second item", Complete = false },
+                new TodoItem { Id = Guid.NewGuid().ToString(), Text = "First item", Complete = false },
+                new TodoItem { Id = Guid.NewGuid().ToString(), Text = "Second item", Complete = false },
             };
 
             foreach (TodoItem todoItem in todoItems)
