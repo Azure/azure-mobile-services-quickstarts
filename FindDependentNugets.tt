@@ -17,6 +17,21 @@ public List<NugetPackage> GetQuickStartTemplates()
     return quickstart.Distinct().ToList();
 }
 
+public List<NugetPackage> GetSampleTemplates()
+{
+    var sample = new List<NugetPackage>();
+	string srcDirectory = this.Host.ResolveParameterValue("", "", "srcDirectory");
+    sample.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service", "packages.config")));
+    sample.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service.Tables", "packages.config")));
+    sample.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service.Entity", "packages.config")));
+    sample.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service.Mongo", "packages.config")));
+    sample.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service.Storage", "packages.config")));
+    sample.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service.SignalR", "packages.config")));
+    sample.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service.Security", "packages.config")));
+
+    return sample.Distinct().ToList();
+}
+
 public string GetHintPath(List<NugetPackage> nugetPackages, string id, string targetFramework=null)
 {
     var package = nugetPackages.Where(nugetPackage => string.CompareOrdinal(nugetPackage.Id, id) == 0).FirstOrDefault();
