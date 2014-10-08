@@ -160,7 +160,7 @@
     <Reference Include="Microsoft.AspNet.Identity.Owin">
       <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.AspNet.Identity.Owin")#>\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="WindowsAzure.ServiceBus">
+    <Reference Include="Microsoft.ServiceBus">
       <HintPath><#= this.GetHintPath(nugetPackages, "WindowsAzure.ServiceBus", "net40-full")#>\Microsoft.ServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
