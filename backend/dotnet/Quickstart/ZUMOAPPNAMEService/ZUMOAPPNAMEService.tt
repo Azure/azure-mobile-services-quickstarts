@@ -1,5 +1,4 @@
 ﻿<#@template language="c#" hostspecific="true"#>
-<# string NugetVersion = this.Host.ResolveParameterValue("", "", "NugetVersion"); #>
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
@@ -71,13 +70,13 @@
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Mobile.Service">
-      <HintPath>..\packages\WindowsAzure.MobileServices.Backend.<#= NugetVersion#>\lib\net45\Microsoft.WindowsAzure.Mobile.Service.dll</HintPath>
+      <HintPath><#= this.GetHintPath(nugetPackages, "WindowsAzure.MobileServices.Backend")#>\Microsoft.WindowsAzure.Mobile.Service.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Mobile.Service.Entity">
-      <HintPath>..\packages\WindowsAzure.MobileServices.Backend.Entity.<#= NugetVersion#>\lib\net45\Microsoft.WindowsAzure.Mobile.Service.Entity.dll</HintPath>
+      <HintPath><#= this.GetHintPath(nugetPackages, "WindowsAzure.MobileServices.Backend.Entity")#>\Microsoft.WindowsAzure.Mobile.Service.Entity.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Mobile.Service.Tables">
-      <HintPath>..\packages\WindowsAzure.MobileServices.Backend.Tables.<#= NugetVersion#>\lib\net45\Microsoft.WindowsAzure.Mobile.Service.Tables.dll</HintPath>
+      <HintPath><#= this.GetHintPath(nugetPackages, "WindowsAzure.MobileServices.Backend.Tables")#>\Microsoft.WindowsAzure.Mobile.Service.Tables.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath><#= this.GetHintPath(nugetPackages, "EntityFramework")#>\EntityFramework.dll</HintPath>

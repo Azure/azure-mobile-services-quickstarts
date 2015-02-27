@@ -12,7 +12,6 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TransformOnBuild>true</TransformOnBuild>
-    <NugetVersion Condition="'$(NugetVersion)' == ''">1.0.0-beta</NugetVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -80,12 +79,12 @@
   <ItemGroup>
     <None Include="Quickstart\ZUMOAPPNAMEService\packages.tt">
       <Generator>CustomTextTemplatingFilePreprocessor</Generator>
-      <AdditionalArgs> -a !!NugetVersion!$(NugetVersion) -a !!srcDirectory!$(MSBuildThisFileDirectory)..\..\src -out $(OutputPath)\Quickstart\ZUMOAPPNAMEService\packages.config </AdditionalArgs>
+      <AdditionalArgs> -a !!srcDirectory!$(MSBuildThisFileDirectory)\packages -out $(OutputPath)\Quickstart\ZUMOAPPNAMEService\packages.config </AdditionalArgs>
       <LastGenOutput>$(OutputPath)\Quickstart\ZUMOAPPNAMEService\packages.config</LastGenOutput>
     </None>
     <None Include="Quickstart\ZUMOAPPNAMEService\ZUMOAPPNAMEService.tt">
       <Generator>CustomTextTemplatingFilePreprocessor</Generator>
-      <AdditionalArgs> -a !!NugetVersion!$(NugetVersion) -a !!srcDirectory!$(MSBuildThisFileDirectory)..\..\src -out $(OutputPath)\Quickstart\ZUMOAPPNAMEService\ZUMOAPPNAMEService.csproj </AdditionalArgs>
+      <AdditionalArgs> -a !!srcDirectory!$(MSBuildThisFileDirectory)\packages -out $(OutputPath)\Quickstart\ZUMOAPPNAMEService\ZUMOAPPNAMEService.csproj </AdditionalArgs>
       <LastGenOutput>$(OutputPath)\Quickstart\ZUMOAPPNAMEService\ZUMOAPPNAMEService.csproj</LastGenOutput>
     </None>
     <None Include="FindDependentNugets.tt" />

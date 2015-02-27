@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <UsingTask TaskName="GetNugetVersion" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <PackageDirectory ParameterType="System.String" Required="true" />
+      <NugetId ParameterType="System.String" Required="true" />
+      <NugetVersion ParameterType="System.String" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Reference Include="System.Core" />
+      <Using Namespace="System" />
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.Net" />
+      <Using Namespace="System.Text.RegularExpressions" />
+      <Using Namespace="Microsoft.Build.Framework" />
+      <Using Namespace="Microsoft.Build.Utilities" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+            var directoryInfo = new DirectoryInfo(PackageDirectory);
+            DirectoryInfo nugetPackageInfo = (DirectoryInfo)directoryInfo.GetDirectories(NugetId).GetValue(0);
+
+            var regex = new Regex(NugetId);
+            var split = regex.Split(nugetPackageInfo.Name);
+            NugetVersion = split[1].Substring(1);
+            ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+</Project>

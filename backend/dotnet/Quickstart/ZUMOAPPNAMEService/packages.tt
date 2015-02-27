@@ -1,5 +1,4 @@
 ﻿<#@template language="c#" hostspecific="true"#>
-<# string NugetVersion = this.Host.ResolveParameterValue("", "", "NugetVersion"); #>
 <#@ output extension=".config" #>
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Text" #>
@@ -10,13 +9,10 @@
 foreach(var nugetPackage in this.GetQuickStartTemplates())
 {
 #>
-  <package id ="<#= nugetPackage.Id #>" version="<#= nugetPackage.Version #>" targetFramework="<#= nugetPackage.TargetFramework #>" />
+  <package id ="<#= nugetPackage.Id #>" version="[<#= nugetPackage.Version #>]" targetFramework="net45" />
 <#
 }
 #>
-  <package id="WindowsAzure.MobileServices.Backend" version="<#= NugetVersion#>" targetFramework="net45" />
-  <package id="WindowsAzure.MobileServices.Backend.Tables" version="<#= NugetVersion#>" targetFramework="net45" />
-  <package id="WindowsAzure.MobileServices.Backend.Entity" version="<#= NugetVersion#>" targetFramework="net45" />
-  <package id="Microsoft.Owin.Host.SystemWeb" version="2.1.0" targetFramework="net45" />
+  <package id="Microsoft.Owin.Host.SystemWeb" version="[2.1.0]" targetFramework="net45" />
 </packages>
 <#@ include file="..\..\FindDependentNugets.tt" #>

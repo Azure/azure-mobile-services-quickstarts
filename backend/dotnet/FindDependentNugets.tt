@@ -1,57 +1,84 @@
 ﻿<#@ assembly name="System.Core" #>
 <#@ assembly name="System.Xml" #>
+<#@ assembly name="System.IO.Compression" #>
+<#@ assembly name="System.IO.Compression.FileSystem" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Xml" #>
 <#@ import namespace="System.IO" #>
+<#@ import namespace="System.IO.Compression" #>
 <#+
 public List<NugetPackage> GetQuickStartTemplates()
 {
     var quickstart = new List<NugetPackage>();
-	string srcDirectory = this.Host.ResolveParameterValue("", "", "srcDirectory");
-    quickstart.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service", "packages.config")));
-    quickstart.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service.Entity", "packages.config")));
-    quickstart.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service.Tables", "packages.config")));
+    string srcDirectory = this.Host.ResolveParameterValue("", "", "srcDirectory");
+    ExtractNuspecFiles(srcDirectory);
+
+    quickstart.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, GetNugetDirectory(srcDirectory, "WindowsAzure.MobileServices.Backend.1.*"), "package.nuspec")));
+    quickstart.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, GetNugetDirectory(srcDirectory, "WindowsAzure.MobileServices.Backend.Entity.1.*"), "package.nuspec")));
+    quickstart.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, GetNugetDirectory(srcDirectory, "WindowsAzure.MobileServices.Backend.Tables.1.*"), "package.nuspec")));
 
     return quickstart.Distinct().ToList();
-}
-
-public List<NugetPackage> GetSampleTemplates()
-{
-    var sample = new List<NugetPackage>();
-	string srcDirectory = this.Host.ResolveParameterValue("", "", "srcDirectory");
-    sample.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service", "packages.config")));
-    sample.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service.Tables", "packages.config")));
-    sample.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service.Entity", "packages.config")));
-    sample.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service.Mongo", "packages.config")));
-    sample.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service.Storage", "packages.config")));
-    sample.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service.SignalR", "packages.config")));
-    sample.AddRange(NugetPackage.ReadPackageConfig(Path.Combine(srcDirectory, "Microsoft.WindowsAzure.Mobile.Service.Security", "packages.config")));
-
-    return sample.Distinct().ToList();
 }
 
 public string GetHintPath(List<NugetPackage> nugetPackages, string id, string targetFramework=null)
 {
     var package = nugetPackages.Where(nugetPackage => string.CompareOrdinal(nugetPackage.Id, id) == 0).FirstOrDefault();
-    return string.Format(@"..\packages\{0}.{1}\lib\{2}", package.Id, package.Version, targetFramework == null ? package.TargetFramework : targetFramework);
+    return string.Format(@"..\packages\{0}.{1}\lib\{2}", package.Id, package.Version, targetFramework == null ? "net45" : targetFramework);
+}
+
+static void ExtractNuspecFiles(string srcDirectory)
+{
+    var directoryInfo = new DirectoryInfo(srcDirectory);
+
+    foreach (FileInfo nugetPackage in directoryInfo.GetFiles("*.nupkg", SearchOption.AllDirectories))
+    {
+        using (ZipArchive archive = ZipFile.OpenRead(nugetPackage.FullName))
+        {
+            foreach (ZipArchiveEntry entry in archive.Entries)
+            {
+                if (entry.FullName.EndsWith(".nuspec", StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine(string.Format("Extracting {0} file", entry.FullName));
+                    entry.ExtractToFile(Path.Combine(nugetPackage.DirectoryName, string.Concat("package.nuspec")), overwrite: true);
+                }
+            }
+        }
+    }
+}
+
+static string GetNugetDirectory(string srcDirectory, string nugetPackage)
+{
+    var directoryInfo = new DirectoryInfo(srcDirectory);
+    DirectoryInfo nugetPackageInfo = (DirectoryInfo)directoryInfo.GetDirectories(nugetPackage).GetValue(0);
+
+    return nugetPackageInfo.Name;
 }
 
 public class NugetPackage : IEquatable<NugetPackage>
 {
-    public NugetPackage(string packageId, string version, string targetFramework)
+    private const string namespaceUri = "http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd";
+
+    public NugetPackage(string packageId, string version)
     {
         this.Id = packageId;
+
+        if (version.StartsWith("[") || version.StartsWith("("))
+        {
+            version = version.Substring(1);
+        }
+        if (version.EndsWith("]") || version.EndsWith(")"))
+        {
+            version = version.Substring(0, version.Length - 1);
+        }
+
         this.Version = version;
-        this.TargetFramework = targetFramework;
     }
 
     public string Id { get; private set; }
 
     public string Version { get; private set; }
-
-    public string TargetFramework { get; private set; }
 
     bool IEquatable<NugetPackage>.Equals(NugetPackage other)
     {
@@ -60,7 +87,7 @@ public class NugetPackage : IEquatable<NugetPackage>
             return false;
         }
 
-        return string.CompareOrdinal(this.Id, other.Id) == 0 && string.CompareOrdinal(this.Version, other.Version) == 0 && string.CompareOrdinal(this.TargetFramework, other.TargetFramework) == 0;
+        return string.CompareOrdinal(this.Id, other.Id) == 0 && string.CompareOrdinal(this.Version, other.Version) == 0;
     }
 
     public override int GetHashCode()
@@ -73,15 +100,22 @@ public class NugetPackage : IEquatable<NugetPackage>
         var doc = new XmlDocument();
         doc.Load(file);
 
+        var xmlNameSpaceManager = new XmlNamespaceManager(doc.NameTable);
+        xmlNameSpaceManager.AddNamespace("ns", namespaceUri);
+
         var references = new List<NugetPackage>();
-        foreach (XmlNode package in doc.SelectSingleNode("/packages").ChildNodes)
+        foreach (XmlNode package in doc.SelectSingleNode("/ns:package/ns:metadata/ns:dependencies", xmlNameSpaceManager).ChildNodes)
         {
             XmlAttribute developmentDependency = package.Attributes["developmentDependency"];
             if (developmentDependency == null || string.CompareOrdinal(developmentDependency.Value, "true") != 0)
             {
-                references.Add(new NugetPackage(package.Attributes["id"].Value, package.Attributes["version"].Value, package.Attributes["targetFramework"].Value));
+                references.Add(new NugetPackage(package.Attributes["id"].Value, package.Attributes["version"].Value));
             }
         }
+
+        XmlNode version = doc.SelectSingleNode("/ns:package/ns:metadata/ns:version", xmlNameSpaceManager);
+        XmlNode id = doc.SelectSingleNode("/ns:package/ns:metadata/ns:id", xmlNameSpaceManager);
+        references.Add(new NugetPackage(id.InnerText, string.Format("[{0}]", version.InnerText)));
 
         return references;
     }
