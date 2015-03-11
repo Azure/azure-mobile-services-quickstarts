@@ -108,7 +108,7 @@
 
   </ItemGroup>
 
-  <Target Name="BuildQuickStarts">
+  <Target Name="DownloadSDK">
     <!-- Create the Quickstarts directory in bin folder -->
     <MakeDir Directories="$(OutputPath)\Quickstarts"/>
 
@@ -141,7 +141,9 @@
       <Output TaskParameter="NugetVersion" PropertyName="WinJSPackageVersion" />
     </GetNugetVersion>
     <Message Text="WinJSPackageVersion = $(WinJSPackageVersion)" />
-
+  </Target>
+  
+  <Target Name="BuildQuickStarts">
     <!-- Build DotNet service quickstart -->
     <MSBuild Projects="$(MSBuildProjectDirectory)\backend\dotnet\Quickstart.csproj"
              Properties="Configuration=$(Configuration)"/>
@@ -151,6 +153,9 @@
     </ItemGroup>
     <Copy SourceFiles="@(DotNetService)"
           DestinationFiles="@(DotNetService->'$(QuickStartsSourceDirectory)\dotnet-service\%(RecursiveDir)%(Filename)%(Extension)')" />
+
+    <MSBuild Projects="$(QuickStartsSourceDirectory)\setup\Setup.csproj" Targets="TransformAll"
+         Properties="Runtime=NODE;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);StoreSDKVersion=$(StorePackageVersion);" />
 
     <!-- We don't want to dublicate web QS files so copy them from Node.js runtime QS to NET runtime QS -->
     <ItemGroup>
@@ -170,8 +175,6 @@
       </_BuildQuickStartsNode>
     </ItemGroup>
 
-    <MSBuild Projects="$(QuickStartsSourceDirectory)\setup\Setup.csproj" Targets="TransformAll"
-             Properties="Runtime=NODE;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);StoreSDKVersion=$(StorePackageVersion);" />
     <MSBuild Projects="@(_BuildQuickStartsNode)"  Targets="_BuildQuickStartParallel" />
 
     <!-- Execute the private BuildQuickStart task for each quickstart -->
@@ -243,6 +246,6 @@
   </Target>
 
   <!-- Full -->
-  <Target Name="Full" DependsOnTargets="Clean;BuildQuickStarts;" />
+  <Target Name="Full" DependsOnTargets="Clean;DownloadSDK;BuildQuickStarts;" />
 </Project>
 
