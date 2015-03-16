@@ -28,6 +28,12 @@ public string GetHintPath(List<NugetPackage> nugetPackages, string id, string ta
     return string.Format(@"..\packages\{0}.{1}\lib\{2}", package.Id, package.Version, targetFramework == null ? "net45" : targetFramework);
 }
 
+public string GetVersion(List<NugetPackage> nugetPackages, string id)
+{
+    var package = nugetPackages.Where(nugetPackage => string.CompareOrdinal(nugetPackage.Id, id) == 0).FirstOrDefault();
+    return package.Version;
+}
+
 static void ExtractNuspecFiles(string srcDirectory)
 {
     var directoryInfo = new DirectoryInfo(srcDirectory);
