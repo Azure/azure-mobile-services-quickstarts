@@ -67,7 +67,7 @@
   <ItemGroup>
   <# var nugetPackages = this.GetQuickStartTemplates(); #>
     <Reference Include="Microsoft.Owin.Host.SystemWeb">
-      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.<#= this.GetVersion(nugetPackages, "Microsoft.Owin")#>\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Mobile.Service">
       <HintPath><#= this.GetHintPath(nugetPackages, "WindowsAzure.MobileServices.Backend")#>\Microsoft.WindowsAzure.Mobile.Service.dll</HintPath>

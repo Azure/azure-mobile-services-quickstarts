@@ -125,7 +125,9 @@
     <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sdk"' LogStandardErrorAsError="true" />
     <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.SQLiteStore -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sqllitestore"' LogStandardErrorAsError="true" />
     <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.WinJS -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages"' LogStandardErrorAsError="true" />
+  </Target>
 
+  <Target Name="BuildQuickStarts">
     <!--Find NugetVersion from NugetPackages-->
     <GetNugetVersion PackageDirectory="$(MSBuildProjectDirectory)\packages\sdk" NugetId="WindowsAzure.MobileServices*" >
       <Output TaskParameter="NugetVersion" PropertyName="SDKPackageVersion" />
@@ -141,9 +143,7 @@
       <Output TaskParameter="NugetVersion" PropertyName="WinJSPackageVersion" />
     </GetNugetVersion>
     <Message Text="WinJSPackageVersion = $(WinJSPackageVersion)" />
-  </Target>
-  
-  <Target Name="BuildQuickStarts">
+
     <!-- Build DotNet service quickstart -->
     <MSBuild Projects="$(MSBuildProjectDirectory)\backend\dotnet\Quickstart.csproj"
              Properties="Configuration=$(Configuration)"/>
@@ -155,7 +155,7 @@
           DestinationFiles="@(DotNetService->'$(QuickStartsSourceDirectory)\dotnet-service\%(RecursiveDir)%(Filename)%(Extension)')" />
 
     <MSBuild Projects="$(QuickStartsSourceDirectory)\setup\Setup.csproj" Targets="TransformAll"
-         Properties="Runtime=NODE;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);StoreSDKVersion=$(StorePackageVersion);" />
+         Properties="Runtime=NODE;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);StoreSDKVersion=$(StorePackageVersion);WinJSPackageVersion=$(WinJSPackageVersion);" />
 
     <!-- We don't want to dublicate web QS files so copy them from Node.js runtime QS to NET runtime QS -->
     <ItemGroup>
@@ -175,7 +175,8 @@
       </_BuildQuickStartsNode>
     </ItemGroup>
 
-    <MSBuild Projects="@(_BuildQuickStartsNode)"  Targets="_BuildQuickStartParallel" />
+    <MSBuild Projects="@(_BuildQuickStartsNode)"  Targets="_BuildQuickStartParallel" 
+             Properties="Runtime=NODE;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);StoreSDKVersion=$(StorePackageVersion);WinJSPackageVersion=$(WinJSPackageVersion);" />
 
     <!-- Execute the private BuildQuickStart task for each quickstart -->
     <ItemGroup Condition="'@(QuickStart)' != ''">
@@ -189,9 +190,10 @@
     </ItemGroup>
 
     <MSBuild Projects="$(QuickStartsSourceDirectory)\setup\Setup.csproj" Targets="TransformAll"
-             Properties="Runtime=DOTNET;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);StoreSDKVersion=$(StorePackageVersion);" />
+             Properties="Runtime=DOTNET;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);StoreSDKVersion=$(StorePackageVersion);WinJSPackageVersion=$(WinJSPackageVersion);" />
 
-    <MSBuild Projects="@(_BuildQuickStartsDotNet)"  Targets="_BuildQuickStartParallel" />
+    <MSBuild Projects="@(_BuildQuickStartsDotNet)"  Targets="_BuildQuickStartParallel" 
+             Properties="Runtime=DOTNET;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);StoreSDKVersion=$(StorePackageVersion);WinJSPackageVersion=$(WinJSPackageVersion);" />
   </Target>
 
   <Target Name="_BuildQuickStartParallel">
