@@ -30,6 +30,7 @@ namespace ZUMOAPPNAME
         private EditText textNewToDo;
 
         const string applicationURL = @"ZUMOAPPURL";
+        const string gatewayURL = @"ZUMOGATEWAYURL";
         const string applicationKey = @"ZUMOAPPKEY";
 
         const string localDbFilename = "localstore.db";
@@ -44,8 +45,8 @@ namespace ZUMOAPPNAME
             CurrentPlatform.Init ();
 
             // Create the Mobile Service Client instance, using the provided
-            // Mobile Service URL and key
-            client = new MobileServiceClient (applicationURL, applicationKey);
+            // Mobile Service URL, Gateway URL and key
+            client = new MobileServiceClient (applicationURL, gatewayURL, applicationKey);
             await InitLocalStoreAsync();
 
             // Get the Mobile Service sync table instance to use
