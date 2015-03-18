@@ -61,14 +61,8 @@
     <Content Include="Quickstart\ZUMOAPPNAMEService\Properties\AssemblyInfo.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Quickstart\ZUMOAPPNAMEService\ScheduledJobs\SampleJob.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Quickstart\ZUMOAPPNAMEService\Web.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+  <ItemGroup>    
     <Content Include="Quickstart\ZUMOAPPNAMEService\Web.Debug.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -86,6 +80,11 @@
       <Generator>CustomTextTemplatingFilePreprocessor</Generator>
       <AdditionalArgs> -a !!srcDirectory!$(MSBuildThisFileDirectory)\packages -out $(OutputPath)\Quickstart\ZUMOAPPNAMEService\ZUMOAPPNAMEService.csproj </AdditionalArgs>
       <LastGenOutput>$(OutputPath)\Quickstart\ZUMOAPPNAMEService\ZUMOAPPNAMEService.csproj</LastGenOutput>
+    </None>
+    <None Include="Quickstart\ZUMOAPPNAMEService\Web.tt">
+      <Generator>CustomTextTemplatingFilePreprocessor</Generator>
+      <AdditionalArgs> -a !!srcDirectory!$(MSBuildThisFileDirectory)\packages -out $(OutputPath)\Quickstart\ZUMOAPPNAMEService\Web.config </AdditionalArgs>
+      <LastGenOutput>$(OutputPath)\Quickstart\ZUMOAPPNAMEService\Web.config</LastGenOutput>
     </None>
     <None Include="FindDependentNugets.tt" />
   </ItemGroup>
