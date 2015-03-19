@@ -1,4 +1,4 @@
-﻿using Microsoft.WindowsAzure.Mobile.Service;
+﻿using Microsoft.Azure.Mobile.Server;
 
 namespace ZUMOAPPNAMEService.DataObjects
 {

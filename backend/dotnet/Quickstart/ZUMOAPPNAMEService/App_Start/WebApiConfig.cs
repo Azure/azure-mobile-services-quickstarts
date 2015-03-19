@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Web.Http;
-using Microsoft.WindowsAzure.Mobile.Service;
+using Microsoft.Azure.Mobile.Server;
+using Microsoft.Azure.Mobile.Server.AppService.Config;
 using ZUMOAPPNAMEService.DataObjects;
 using ZUMOAPPNAMEService.Models;
 
@@ -12,6 +13,8 @@ namespace ZUMOAPPNAMEService
     {
         public static void Register()
         {
+            AppServiceExtensionConfig.Initialize();
+            
             // Use this class to set configuration options for your mobile service
             ConfigOptions options = new ConfigOptions();
 

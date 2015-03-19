@@ -69,14 +69,20 @@
     <Reference Include="Microsoft.Owin.Host.SystemWeb">
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.<#= this.GetVersion(nugetPackages, "Microsoft.Owin")#>\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Mobile.Service">
-      <HintPath><#= this.GetHintPath(nugetPackages, "WindowsAzure.MobileServices.Backend")#>\Microsoft.WindowsAzure.Mobile.Service.dll</HintPath>
+    <Reference Include="Microsoft.Azure.Mobile.Server">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.Azure.Mobile.Server")#>\Microsoft.Azure.Mobile.Server.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Mobile.Service.Entity">
-      <HintPath><#= this.GetHintPath(nugetPackages, "WindowsAzure.MobileServices.Backend.Entity")#>\Microsoft.WindowsAzure.Mobile.Service.Entity.dll</HintPath>
+    <Reference Include="Microsoft.Azure.Mobile.Server.Entity">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.Azure.Mobile.Server.Entity")#>\Microsoft.Azure.Mobile.Server.Entity.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Mobile.Service.Tables">
-      <HintPath><#= this.GetHintPath(nugetPackages, "WindowsAzure.MobileServices.Backend.Tables")#>\Microsoft.WindowsAzure.Mobile.Service.Tables.dll</HintPath>
+    <Reference Include="Microsoft.Azure.Mobile.Server.Tables">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.Azure.Mobile.Server.Tables")#>\Microsoft.Azure.Mobile.Server.Tables.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.Mobile.Server.AppService">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.Azure.Mobile.Server.AppService")#>\Microsoft.Azure.Mobile.Server.AppService.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.AppService.ApiApps.Service">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.Azure.AppService.ApiApps.Service")#>\Microsoft.Azure.AppService.ApiApps.Service.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath><#= this.GetHintPath(nugetPackages, "EntityFramework")#>\EntityFramework.dll</HintPath>
@@ -195,7 +201,6 @@
     <Compile Include="Controllers\TodoItemController.cs" />
     <Compile Include="DataObjects\TodoItem.cs" />
     <Compile Include="Models\ZUMOAPPNAMEContext.cs" />
-    <Compile Include="ScheduledJobs\SampleJob.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
