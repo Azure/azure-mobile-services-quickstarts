@@ -123,8 +123,8 @@
     <Exec Command='"$(NugetExe)" install Microsoft.Azure.Mobile.Server.Entity -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\dotnet\packages"' LogStandardErrorAsError="true" />
     <Exec Command='"$(NugetExe)" install Microsoft.Azure.Mobile.Server.Tables -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\dotnet\packages"' LogStandardErrorAsError="true" />
     <Exec Command='"$(NugetExe)" install Microsoft.Azure.Mobile.Server.AppService -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\dotnet\packages"' LogStandardErrorAsError="true" />
-    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sdk"' LogStandardErrorAsError="true" />
-    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.SQLiteStore -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sqllitestore"' LogStandardErrorAsError="true" />
+    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices -Prerelease -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sdk"' LogStandardErrorAsError="true" />
+    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.SQLiteStore -Prerelease -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sqllitestore"' LogStandardErrorAsError="true" />
     <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.WinJS -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages"' LogStandardErrorAsError="true" />
   </Target>
 
