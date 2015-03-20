@@ -9,8 +9,8 @@ rm -rf WindowsAzureMobileServices.framework.zip
 rm -rf ZUMOAPPNAME/WindowsAzureMobileServices.framework
 
 # Second, copy the framework over into this directory
-rsync -rlK $IOS_FRAMEWORK/WindowsAzureMobileServices.framework.zip
-unzip WindowsAzureMobileServices.framework.zip -d ZUMOAPPNAME/WindowsAzureMobileServices.framework
+rsync -rlK $IOS_FRAMEWORK/WindowsAzureMobileServices.framework.zip WindowsAzureMobileServices.framework.zip
+unzip WindowsAzureMobileServices.framework.zip -d ZUMOAPPNAME
 
 # Ensure that there is not a build folder in the SDK
 rm -rf ZUMOAPPNAME/Build 
