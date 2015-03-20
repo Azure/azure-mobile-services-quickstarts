@@ -4,11 +4,8 @@
 rm iOS_ObjC.zip
 rm -rf ZUMOAPPNAME/WindowsAzureMobileServices.framework
 
-# Second, build the Microsoft Azure Mobile Services iOS Framework
-bash ../../sdk/iOS/build.command
-
-# Third, copy the framework over into this directory
-rsync -rlK ../../sdk/iOS/WindowsAzureMobileServices.framework ZUMOAPPNAME/
+# Second, copy the framework over into this directory
+rsync -rlK $IOS_FRAMEWORK/WindowsAzureMobileServices.framework ZUMOAPPNAME/
 
 # Ensure that there is not a build folder in the SDK
 rm -rf ZUMOAPPNAME/Build 

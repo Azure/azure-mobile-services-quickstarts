@@ -1,4 +1,4 @@
-# This bash script cleans and builds the Windows Azure Mobile Services QuickStart project
+# This bash script cleans and builds the QuickStart project
 
 # set working directory to this scripts directory
 cd "$( cd "$( dirname "$0" )" && pwd )"
@@ -8,9 +8,7 @@ rm iOS_Swift.zip
 rm -rf ZUMOAPPNAME/WindowsAzureMobileServices.framework
 
 # Second, copy the framework over into this directory
-# We assume we are called from build.command in quickstart/iOS (or the build
-# script for the sdk was manually run already)
-rsync -rlK ../../sdk/iOS/WindowsAzureMobileServices.framework ZUMOAPPNAME/
+rsync -rlK $IOS_FRAMEWORK/WindowsAzureMobileServices.framework ZUMOAPPNAME/
 
 # Ensure that there is not a build folder in the SDK
 rm -rf ZUMOAPPNAME/Build 
@@ -28,5 +26,3 @@ if [ "$COPY_TO_SHARE" == "YES" ]; then
     rsync -rlK iOS_Swift.zip $SHARE_PATH
   done
 fi
-
-
