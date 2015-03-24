@@ -126,6 +126,7 @@
     <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices -Prerelease -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sdk"' LogStandardErrorAsError="true" />
     <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.SQLiteStore -Prerelease -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sqllitestore"' LogStandardErrorAsError="true" />
     <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.WinJS -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages"' LogStandardErrorAsError="true" />
+    <Exec Command='"$(NugetExe)" install "$(MSBuildProjectDirectory)\backend\try-mobile-apps\try-mobile-apps\packages.config" -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\try-mobile-apps\packages"' LogStandardErrorAsError="true" />
   </Target>
 
   <Target Name="BuildQuickStarts">
@@ -154,6 +155,16 @@
     </ItemGroup>
     <Copy SourceFiles="@(DotNetService)"
           DestinationFiles="@(DotNetService->'$(QuickStartsSourceDirectory)\dotnet-service\%(RecursiveDir)%(Filename)%(Extension)')" />
+    
+    <!-- Build "Try Mobile Apps" service quickstart -->
+    <MSBuild Projects="$(MSBuildProjectDirectory)\backend\try-mobile-apps\try-mobile-apps\TryMobileApps.csproj" Properties="Configuration=$(Configuration)"/>
+    <!-- Copy the SQL CE native binaries to the bin folder - don't do this as a post build event as this will break online editing with Monaco -->
+    <ItemGroup>
+      <TryMobileApps Include="$(MSBuildProjectDirectory)\backend\try-mobile-apps\packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(TryMobileApps)"
+          DestinationFiles="@(TryMobileApps->'$(MSBuildProjectDirectory)\backend\try-mobile-apps\try-mobile-apps\bin\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Exec Command='"$(ZipPath)" a -tzip $(OutputPath)\QuickStarts\TryMobileApps.zip $(MSBuildProjectDirectory)\backend\try-mobile-apps\try-mobile-apps\* '/>
 
     <MSBuild Projects="$(QuickStartsSourceDirectory)\setup\Setup.csproj" Targets="TransformAll"
          Properties="Runtime=NODE;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);StoreSDKVersion=$(StorePackageVersion);WinJSPackageVersion=$(WinJSPackageVersion);" />
