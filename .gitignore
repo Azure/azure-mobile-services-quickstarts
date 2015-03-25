@@ -48,3 +48,6 @@ client/xamarin.android/ZUMOAPPNAME.sln
 client/xamarin.android/ZUMOAPPNAME/ZUMOAPPNAME.csproj
 client/xamarin.iOS/ZUMOAPPNAME.sln
 client/xamarin.iOS/ZUMOAPPNAME/ZUMOAPPNAME.csproj
+backend/dotnet/Quickstart/ZUMOAPPNAMEService/packages.config
+backend/dotnet/Quickstart/ZUMOAPPNAMEService/ZUMOAPPNAMEService.csproj
+/backend/dotnet/Quickstart/ZUMOAPPNAMEService/Web.config
