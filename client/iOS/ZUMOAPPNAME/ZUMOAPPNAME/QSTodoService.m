@@ -54,6 +54,7 @@
     {
         // Initialize the Mobile Service client with your URL and key   
         self.client = [MSClient clientWithApplicationURLString:@"ZUMOAPPURL"
+                                              gatewayURLString:@"ZUMOGATEWAYURL"
                                                 applicationKey:@"ZUMOAPPKEY"];
     
         QSAppDelegate *delegate = (QSAppDelegate *)[[UIApplication sharedApplication] delegate];
