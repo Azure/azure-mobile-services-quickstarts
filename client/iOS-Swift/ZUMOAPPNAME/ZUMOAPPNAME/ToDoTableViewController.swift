@@ -25,7 +25,7 @@ class ToDoTableViewController: UITableViewController, ToDoItemDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let client = MSClient(applicationURLString: "ZUMOAPPURL", applicationKey: "ZUMOAPPKEY")
+        let client = MSClient(applicationURLString: "ZUMOAPPURL", gatewayURLString: "ZUMOGATEWAYURL", applicationKey: "ZUMOAPPKEY")
         
         self.table = client.tableWithName("TodoItem")!
         self.refreshControl?.addTarget(self, action: "onRefresh:", forControlEvents: UIControlEvents.ValueChanged)
