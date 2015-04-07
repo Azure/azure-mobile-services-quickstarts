@@ -13,7 +13,6 @@
 public List<NugetPackage> GetQuickStartTemplates()
 {
     var quickstart = new List<NugetPackage>();
-    string srcDirectory = this.Host.ResolveParameterValue("", "", "srcDirectory");
     quickstart.AddRange(ReadAllInstalledPackages(srcDirectory));
     return quickstart.Distinct().ToList();
 }
