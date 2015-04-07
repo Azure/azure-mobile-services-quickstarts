@@ -77,16 +77,16 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
                 println("Error: \(error.description)")
                 
                 // We will just discard our changes and keep the servers copy for simplicity                
-                let opErrors = error.userInfo?[MSErrorPushResultKey] as Array<MSTableOperationError>
-                
-                for opError in opErrors {
-                    println("Attempted operation to item \(opError.itemId)")
-                    if (opError.operation == .Insert || opError.operation == .Delete) {
-                        println("Insert/Delete, failed discarding changes")
-                        opError.cancelOperationAndDiscardItemWithCompletion(nil)
-                    } else {
-                        println("Update failed, reverting to server's copy")
-                        opError.cancelOperationAndUpdateItem(opError.serverItem, completion: nil)
+                if let opErrors = error.userInfo?[MSErrorPushResultKey] as? Array<MSTableOperationError> {
+                    for opError in opErrors {
+                        println("Attempted operation to item \(opError.itemId)")
+                        if (opError.operation == .Insert || opError.operation == .Delete) {
+                            println("Insert/Delete, failed discarding changes")
+                            opError.cancelOperationAndDiscardItemWithCompletion(nil)
+                        } else {
+                            println("Update failed, reverting to server's copy")
+                            opError.cancelOperationAndUpdateItem(opError.serverItem, completion: nil)
+                        }
                     }
                 }
             }
