@@ -102,7 +102,11 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.config</LastGenOutput>
     </None>
-    <None Include="FindDependentNugets.tt" />
+  </ItemGroup>
+  <ItemGroup>
+    <T4ParameterValues Include="srcDirectory">
+      <Value>$(MSBuildThisFileDirectory)\packages</Value>
+    </T4ParameterValues>
   </ItemGroup>
   <ItemGroup>
     <T4ParameterValues Include="srcDirectory">

@@ -15,21 +15,49 @@
 //
 import Foundation
 import UIKit
+import CoreData
 
-class ToDoTableViewController: UITableViewController, ToDoItemDelegate {
+class ToDoTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, ToDoItemDelegate {
     
-    var records = [NSDictionary]()
-    var table : MSTable?
+    var table : MSSyncTable?
+    lazy var fetchedResultController: NSFetchedResultsController = {
+        let fetchRequest = NSFetchRequest(entityName: "TodoItem")
+        let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+        
+        // show only non-completed items
+        fetchRequest.predicate = NSPredicate(format: "complete != true")
+        
+        // sort by item text
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "ms_createdAt", ascending: true)]
+        
+        // Note: if storing a lot of data, you should specify a cache for the last parameter
+        // for more information, see Apple's documentation: http://go.microsoft.com/fwlink/?LinkId=524591&clcid=0x409
+        let resultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        resultsController.delegate = self;
+        
+        return resultsController
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         let client = MSClient(applicationURLString: "ZUMOAPPURL", gatewayURLString: "ZUMOGATEWAYURL", applicationKey: "ZUMOAPPKEY")
+        let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+        let store = MSCoreDataStore(managedObjectContext: managedObjectContext)
+        client.syncContext = MSSyncContext(delegate: nil, dataSource: store, callback: nil)
         
-        self.table = client.tableWithName("TodoItem")!
+        self.table = client.syncTableWithName("TodoItem")!
         self.refreshControl?.addTarget(self, action: "onRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         
+        var error : NSError? = nil
+        if !self.fetchedResultController.performFetch(&error) {
+            println("Unresolved error \(error), \(error?.userInfo)")
+            abort()
+        }
+
+        // Refresh data on load
         self.refreshControl?.beginRefreshing()
         self.onRefresh(self.refreshControl)
     }
@@ -38,19 +66,31 @@ class ToDoTableViewController: UITableViewController, ToDoItemDelegate {
         let predicate = NSPredicate(format: "complete == NO")
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        self.table!.readWithPredicate(predicate) {
-            result, error  in
+        
+        self.table!.pullWithQuery(self.table?.query(), queryId: "AllRecords") {
+            (error) -> Void in
             
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             if error != nil {
-                println("Error: " + error.description)
-                return
+                // A real application would handle various errors like network conditions,
+                // server conflicts, etc via the MSSyncContextDelegate
+                println("Error: \(error.description)")
+                
+                // We will just discard our changes and keep the servers copy for simplicity                
+                if let opErrors = error.userInfo?[MSErrorPushResultKey] as? Array<MSTableOperationError> {
+                    for opError in opErrors {
+                        println("Attempted operation to item \(opError.itemId)")
+                        if (opError.operation == .Insert || opError.operation == .Delete) {
+                            println("Insert/Delete, failed discarding changes")
+                            opError.cancelOperationAndDiscardItemWithCompletion(nil)
+                        } else {
+                            println("Update failed, reverting to server's copy")
+                            opError.cancelOperationAndUpdateItem(opError.serverItem, completion: nil)
+                        }
+                    }
+                }
             }
             
-            self.records = result.items as [NSDictionary]
-            println("Information: retrieved %d records", result.items.count)
-            
-            self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
     }
@@ -59,7 +99,7 @@ class ToDoTableViewController: UITableViewController, ToDoItemDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    // Table
+    // MARK: Table Controls
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
     {
@@ -78,43 +118,55 @@ class ToDoTableViewController: UITableViewController, ToDoItemDelegate {
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
     {
-        let record = self.records[indexPath.row]
-        let completedItem = record.mutableCopy() as NSMutableDictionary
+        let record = self.fetchedResultController.objectAtIndexPath(indexPath) as NSManagedObject
+        let item = MSCoreDataStore.tableItemFromManagedObject(record) as NSDictionary
+        let completedItem = item.mutableCopy() as NSMutableDictionary
+        
         completedItem["complete"] = true
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        self.table!.update(completedItem) {
-            (result, error) in
-            
+        
+        self.table!.update(completedItem, completion: { (error) -> Void in
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             if error != nil {
-                println("Error: " + error.description)
+                println("Error: \(error.description)")
                 return
             }
-            
-            self.records.removeAtIndex(indexPath.row)
-            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-        }
+        });
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return self.records.count
+        if let sections = self.fetchedResultController.sections {
+            return sections[section].numberOfObjects
+        }
+        
+        return 0;
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier = "Cell"
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as UITableViewCell
-        let item = self.records[indexPath.row]
+        var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as UITableViewCell
+        cell = configureCell(cell, indexPath: indexPath)
         
-        cell.textLabel!.text = (item["text"] as String)
+        return cell
+    }
+    
+    func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) -> UITableViewCell {
+        let item = self.fetchedResultController.objectAtIndexPath(indexPath) as NSManagedObject
+        
+        // Set the label on the cell and make sure the label color is black (in case this cell
+        // has been reused and was previously greyed out
+        cell.textLabel!.text = (item.valueForKey("text") as String)
         cell.textLabel!.textColor = UIColor.blackColor()
         
         return cell
     }
     
-    // Navigation
+    
+    // MARK: Navigation
+    
     
     @IBAction func addItem(sender : AnyObject) {
         self.performSegueWithIdentifier("addItem", sender: self)
@@ -129,7 +181,8 @@ class ToDoTableViewController: UITableViewController, ToDoItemDelegate {
     }
     
     
-    // ToDoItemDelegate
+    // MARK: ToDoItemDelegate
+    
     
     func didSaveItem(text: String)
     {
@@ -137,7 +190,8 @@ class ToDoTableViewController: UITableViewController, ToDoItemDelegate {
             return
         }
         
-        let itemToInsert = ["text": text, "complete": false]
+        // We set created at to now, so it will sort as we expect it to post the push/pull
+        let itemToInsert = ["text": text, "complete": false, "__createdAt": NSDate()]
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         self.table!.insert(itemToInsert) {
@@ -145,10 +199,55 @@ class ToDoTableViewController: UITableViewController, ToDoItemDelegate {
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             if error != nil {
                 println("Error: " + error.description)
-            } else {
-                self.records.append(item)
-                self.tableView.reloadData()
             }
         }
+    }
+    
+    
+    // MARK: NSFetchedResultsDelegate
+    
+    
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.tableView.beginUpdates()
+        });
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            let indexSectionSet = NSIndexSet(index: sectionIndex)
+            if type == .Insert {
+                self.tableView.insertSections(indexSectionSet, withRowAnimation: .Fade)
+            } else if type == .Delete {
+                self.tableView.deleteSections(indexSectionSet, withRowAnimation: .Fade)
+            }
+        })
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            switch type {
+            case .Insert:
+                self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+            case .Delete:
+                self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            case .Move:
+                self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+                self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+            case .Update:
+                // note: Apple samples show a call to configureCell here; this is incorrect--it can result in retrieving the
+                // wrong index when rows are reordered. For more information, see:
+                // http://go.microsoft.com/fwlink/?LinkID=524590&clcid=0x409
+                self.tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
+            }
+        })
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.tableView.endUpdates()
+        });
     }
 }

@@ -129,7 +129,7 @@
     <Exec Command='"$(NugetExe)" install "$(MSBuildProjectDirectory)\backend\try-mobile-apps\try-mobile-apps\packages.config" -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\try-mobile-apps\packages"' LogStandardErrorAsError="true" />
 
     <!--Download iOS SDK-->
-    <HttpDownload DownloadUrl="http://aka.ms/gc6fex" PackageDirectory="$(SDKRootPath)\packages" SDKPackage="iOS" Condition=" '$(iOSSDK)' == ''" />
+    <HttpDownload DownloadUrl="https://go.microsoft.com/fwLink/?LinkID=529823" PackageDirectory="$(SDKRootPath)\packages" SDKPackage="iOS" Condition=" '$(iOSSDK)' == ''" />
     <Exec Command='"$(ZipPath)" x "$(iOSSDK)" -o"$(SDKRootPath)\packages\iOS" * -r -y' Condition=" '$(iOSSDK)' != ''" />
   </Target>
 
