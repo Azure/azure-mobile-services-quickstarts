@@ -109,11 +109,6 @@
     </T4ParameterValues>
   </ItemGroup>
   <ItemGroup>
-    <T4ParameterValues Include="srcDirectory">
-      <Value>$(MSBuildThisFileDirectory)\packages</Value>
-    </T4ParameterValues>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>

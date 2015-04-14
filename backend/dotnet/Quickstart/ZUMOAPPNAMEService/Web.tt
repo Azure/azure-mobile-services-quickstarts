@@ -74,6 +74,18 @@
         <assemblyIdentity name="Microsoft.Owin.Security.Cookies" publicKeyToken="31bf3856ad364e35" culture="neutral" />
         <bindingRedirect oldVersion="0.0.0.0-<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.Owin.Security.Cookies")#>" newVersion="<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.Owin.Security.Cookies")#>" />
       </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Owin.Security.OAuth" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.Owin.Security.OAuth")#>" newVersion="<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.Owin.Security.OAuth")#>" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-<#= this.GetAssemblyVersion(nugetPackages, "Newtonsoft.Json")#>" newVersion="<#= this.GetAssemblyVersion(nugetPackages, "Newtonsoft.Json")#>" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Microsoft.Azure.AppService.ApiApps.Service" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.Azure.AppService.ApiApps.Service")#>" newVersion="<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.Azure.AppService.ApiApps.Service")#>" />
+      </dependentAssembly>
     </assemblyBinding>
   </runtime>
   <entityFramework>
