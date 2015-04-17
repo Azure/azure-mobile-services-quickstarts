@@ -46,24 +46,24 @@ class ToDoItemViewController: UIViewController, UINavigationBarDelegate,  UIBarP
         self.text.resignFirstResponder()
     }
     
-    func positionForBar(bar: UIBarPositioning!) -> UIBarPosition
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition
     {
         return UIBarPosition.TopAttached
     }
     
     // Textfield
     
-    func textFieldDidEndEditing(textField: UITextField!)
+    func textFieldDidEndEditing(textField: UITextField)
     {
         self.dismissViewControllerAnimated(true, completion: nil);
     }
     
-    func textFieldShouldEndEditing(textField: UITextField!) -> Bool
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool
     {
         return true
     }
     
-    func textFieldShouldReturn(textField: UITextField!) -> Bool
+    func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         saveItem()
         
