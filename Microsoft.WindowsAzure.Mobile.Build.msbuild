@@ -2,6 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Full" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildProjectDirectory)\tools\Microsoft.WindowsAzure.Mobile.Build.targets" />
   <Import Project="$(MSBuildProjectDirectory)\tools\NuGet.targets" />
+  <Import Project="$(MSBuildProjectDirectory)\tools\SdkVersion.targets" />
 
   <PropertyGroup>
     <SDKRootPath>$(MSBuildThisFileDirectory)</SDKRootPath>
@@ -23,9 +24,10 @@
     <!--Variable to override iOS SDK-->
     <iOSSDK></iOSSDK>
   </PropertyGroup>
-
+  
   <!-- Quickstarts -->
   <ItemGroup>
+  
     <!-- Node quickstarts -->
     <QuickStart Include="$(MSBuildProjectFile)" >
       <Runtime>Node</Runtime>
@@ -119,12 +121,12 @@
     <!--Restore required nuget packages-->
     <Exec Command='"$(NugetExe)" install 7-Zip.CommandLine -source $(DefaultNugetPackageSource) -o "$(MSBuildProjectDirectory)\packages" -Version 9.20.0' LogStandardErrorAsError="true" />
 
-    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.Backend -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\dotnet\packages"' LogStandardErrorAsError="true" />
-    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.Backend.Entity -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\dotnet\packages"' LogStandardErrorAsError="true" />
-    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.Backend.Tables -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\dotnet\packages"' LogStandardErrorAsError="true" />
-    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sdk"' LogStandardErrorAsError="true" />
-    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.SQLiteStore -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sqllitestore"' LogStandardErrorAsError="true" />
-    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.WinJS -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages"' LogStandardErrorAsError="true" />
+    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.Backend -Version $(BackendPackageVersion) -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\dotnet\packages"' LogStandardErrorAsError="true" />
+    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.Backend.Entity -Version $(BackendPackageVersion) -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\dotnet\packages"' LogStandardErrorAsError="true" />
+    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.Backend.Tables -Version $(BackendPackageVersion) -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\dotnet\packages"' LogStandardErrorAsError="true" />
+    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices -Version $(SDKPackageVersion) -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sdk"' LogStandardErrorAsError="true" />
+    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.SQLiteStore -Version $(StorePackageVersion) -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sqllitestore"' LogStandardErrorAsError="true" />
+    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.WinJS -Version $(WinJSPackageVersion) -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages"' LogStandardErrorAsError="true" />
 
     <!--Download iOS SDK-->
     <HttpDownload DownloadUrl="http://aka.ms/gc6fex" PackageDirectory="$(SDKRootPath)\packages" SDKPackage="iOS" Condition=" '$(iOSSDK)' == ''" />
@@ -132,21 +134,6 @@
   </Target>
 
   <Target Name="BuildQuickStarts">
-    <!--Find NugetVersion from NugetPackages-->
-    <GetNugetVersion PackageDirectory="$(MSBuildProjectDirectory)\packages\sdk" NugetId="WindowsAzure.MobileServices*" >
-      <Output TaskParameter="NugetVersion" PropertyName="SDKPackageVersion" />
-    </GetNugetVersion>
-    <Message Text="SDKPackageVersion = $(SDKPackageVersion)" />
-
-    <GetNugetVersion PackageDirectory="$(MSBuildProjectDirectory)\packages\sqllitestore" NugetId="WindowsAzure.MobileServices.SQLiteStore*">
-      <Output TaskParameter="NugetVersion" PropertyName="StorePackageVersion" />
-    </GetNugetVersion>
-    <Message Text="StorePackageVersion = $(StorePackageVersion)" />
-
-    <GetNugetVersion PackageDirectory="$(MSBuildProjectDirectory)\packages" NugetId="WindowsAzure.MobileServices.WinJS*">
-      <Output TaskParameter="NugetVersion" PropertyName="WinJSPackageVersion" />
-    </GetNugetVersion>
-    <Message Text="WinJSPackageVersion = $(WinJSPackageVersion)" />
 
     <!-- Build DotNet service quickstart -->
     <MSBuild Projects="$(MSBuildProjectDirectory)\backend\dotnet\Quickstart.csproj"
