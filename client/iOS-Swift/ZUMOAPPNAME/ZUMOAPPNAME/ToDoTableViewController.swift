@@ -22,7 +22,7 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
     var table : MSSyncTable?
     lazy var fetchedResultController: NSFetchedResultsController = {
         let fetchRequest = NSFetchRequest(entityName: "TodoItem")
-        let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+        let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
         
         // show only non-completed items
         fetchRequest.predicate = NSPredicate(format: "complete != true")
@@ -118,21 +118,20 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
     {
-        let record = self.fetchedResultController.objectAtIndexPath(indexPath) as NSManagedObject
-        let item = MSCoreDataStore.tableItemFromManagedObject(record) as NSDictionary
-        let completedItem = item.mutableCopy() as NSMutableDictionary
+        let record = self.fetchedResultController.objectAtIndexPath(indexPath) as! NSManagedObject
+        var item = MSCoreDataStore.tableItemFromManagedObject(record)
         
-        completedItem["complete"] = true
+        item["complete"] = true
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         
-        self.table!.update(completedItem, completion: { (error) -> Void in
+        self.table!.update(item) { (error) -> Void in
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             if error != nil {
                 println("Error: \(error.description)")
                 return
             }
-        });
+        }
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -147,18 +146,18 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier = "Cell"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! UITableViewCell
         cell = configureCell(cell, indexPath: indexPath)
         
         return cell
     }
     
     func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) -> UITableViewCell {
-        let item = self.fetchedResultController.objectAtIndexPath(indexPath) as NSManagedObject
+        let item = self.fetchedResultController.objectAtIndexPath(indexPath) as! NSManagedObject
         
         // Set the label on the cell and make sure the label color is black (in case this cell
         // has been reused and was previously greyed out
-        cell.textLabel!.text = (item.valueForKey("text") as String)
+        cell.textLabel!.text = (item.valueForKey("text") as! String)
         cell.textLabel!.textColor = UIColor.blackColor()
         
         return cell
@@ -175,13 +174,13 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!)
     {
         if segue.identifier == "addItem" {
-            let todoController = segue.destinationViewController as ToDoItemViewController
+            let todoController = segue.destinationViewController as! ToDoItemViewController
             todoController.delegate = self
         }
     }
     
     
-    // MARK: ToDoItemDelegate
+    // MARK: - ToDoItemDelegate
     
     
     func didSaveItem(text: String)
@@ -204,7 +203,7 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
     }
     
     
-    // MARK: NSFetchedResultsDelegate
+    // MARK: - NSFetchedResultsDelegate
     
     
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
