@@ -29,9 +29,6 @@ namespace TryMobileAppsService
             // Remove authorization requirement for the Try Mobile Apps quickstart
             config.Filters.Remove(config.Filters.Single(x => x.Instance is AuthorizeLevelAttribute).Instance);
 
-            // Prevent the default Mobile Services page from being shown
-            config.Routes.Remove("Home");
-
             Database.SetInitializer(new TryMobileAppsInitializer());
         }
     }

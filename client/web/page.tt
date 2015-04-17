@@ -13,10 +13,11 @@ $(function() {
     // and application key. You're all set to start working with your Mobile Service!
     //var client = new WindowsAzure.MobileServiceClient(
     //    "ZUMOAPPURL",
+    //    "ZUMOGATEWAYURL",
     //    "ZUMOAPPKEY"
     //);
 <# } else { #>
-    var client = new WindowsAzure.MobileServiceClient('ZUMOAPPURL', 'ZUMOAPPKEY');
+    var client = new WindowsAzure.MobileServiceClient('ZUMOAPPURL', 'ZUMOGATEWAYURL', 'ZUMOAPPKEY');
 <# } #>
     var todoItemTable = client.getTable('todoitem');
 
