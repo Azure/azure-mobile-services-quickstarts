@@ -45,8 +45,10 @@ client/windows-universal-js/ZUMOAPPNAME/ZUMOAPPNAME.Shared/js/default.js
 client/windows-universal-js/ZUMOAPPNAME/ZUMOAPPNAME.Windows/packages.config
 client/windows-universal-js/ZUMOAPPNAME/ZUMOAPPNAME.WindowsPhone/packages.config
 client/xamarin.android/ZUMOAPPNAME.sln
+client/xamarin.android/ZUMOAPPNAME/packages.config
 client/xamarin.android/ZUMOAPPNAME/ZUMOAPPNAME.csproj
 client/xamarin.iOS/ZUMOAPPNAME.sln
+client/xamarin.iOS/ZUMOAPPNAME/packages.config
 client/xamarin.iOS/ZUMOAPPNAME/ZUMOAPPNAME.csproj
 backend/dotnet/Quickstart/ZUMOAPPNAMEService/packages.config
 backend/dotnet/Quickstart/ZUMOAPPNAMEService/ZUMOAPPNAMEService.csproj
