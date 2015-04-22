@@ -6,10 +6,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
-<# if (Runtime == "DOTNET") { #>
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZUMOAPPNAMEService", "ZUMOAPPNAMEService\ZUMOAPPNAMEService.csproj", "{209FA716-A7AD-4095-BD70-C8710FC66FA7}"
-EndProject
-<# } #>
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZUMOAPPNAME", "ZUMOAPPNAME\ZUMOAPPNAME.csproj", "{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}"
 EndProject
 Global
@@ -32,16 +28,6 @@ Global
 		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{07F1CD1B-626F-4BE5-9840-97B44CBB94C9}.Release|iPhoneSimulator.Deploy.0 = Release|iPhoneSimulator
-<# if (Runtime == "DOTNET") { #>
-		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Release|iPhone.Build.0 = Release|Any CPU
-		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{209FA716-A7AD-4095-BD70-C8710FC66FA7}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-<# } #>
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -251,14 +251,6 @@
           SourceFiles="@(WinJSQuickStartCopyFiles)"
           DestinationFolder="$(QuickStartOutputDirectory)\ZUMOAPPNAME\ZUMOAPPNAME.WindowsPhone\js"/>
 
-    <!-- Copy DotNet service project -->
-    <ItemGroup>
-      <DotNetService Include="$(OutputPath)\QuickStarts\$(QuickStartRuntime)\dotnet-service\ZUMOAPPNAMEService\**\*.*" />
-    </ItemGroup>
-    <Copy SourceFiles="@(DotNetService)"
-          Condition="'$(QuickStartRuntime)' == 'DotNet'"
-          DestinationFiles="@(DotNetService->'$(QuickStartOutputDirectory)\ZUMOAPPNAMEService\%(RecursiveDir)%(Filename)%(Extension)')"/>
-
     <!-- Copy iOS SDK -->
     <ItemGroup>
       <iOSSDK Include="$(SDKRootPath)\packages\iOS\WindowsAzureMobileServices.framework\**\*.*" />
