@@ -30,18 +30,11 @@ namespace ZUMOAPPNAME
 <# if (Runtime=="DOTNET") { #>
         // This MobileServiceClient has been configured to communicate with your local
         // test project for debugging purposes.
-        public static MobileServiceClient MobileService = new MobileServiceClient(
-            "http://localhost:ZUMONETRUNTIMESERVERPORT"
-        );
+        // public static MobileServiceClient MobileService = new MobileServiceClient(
+        //     "http://localhost:ZUMONETRUNTIMESERVERPORT"
+        // );
+<# } #>
 
-        // This MobileServiceClient has been configured to communicate with the Azure Mobile Service and
-        // Azure Gateway using the application key. You're all set to start working with your Mobile Service!
-        //public static MobileServiceClient MobileService = new MobileServiceClient(
-        //    "ZUMOAPPURL",
-        //    "ZUMOGATEWAYURL",
-        //    "ZUMOAPPKEY"
-        //);
-<# } else { #>
         // This MobileServiceClient has been configured to communicate with the Azure Mobile Service and
         // Azure Gateway using the application key. You're all set to start working with your Mobile Service!
         public static MobileServiceClient MobileService = new MobileServiceClient(
@@ -49,7 +42,6 @@ namespace ZUMOAPPNAME
             "ZUMOGATEWAYURL",
             "ZUMOAPPKEY"
         );
-<# } #>
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
