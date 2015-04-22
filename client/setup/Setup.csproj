@@ -225,6 +225,19 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ZUMOAPPNAME.csproj</LastGenOutput>
     </None>
+    <None Include="..\xamarin.android\ZUMOAPPNAME\packages.config">
+      <Link>xamarin.android\ZUMOAPPNAME\packages.config</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>packages.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="..\xamarin.android\ZUMOAPPNAME\packages.tt">
+      <Link>xamarin.android\ZUMOAPPNAME\packages.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>packages.config</LastGenOutput>
+    </None>
     <None Include="..\xamarin.iOS\ZUMOAPPNAME.tt">
       <Link>xanarin.iOS\ZUMOAPPNAME.tt</Link>
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -234,6 +247,19 @@
       <Link>xanarin.iOS\ZUMOAPPNAME\ZUMOAPPNAME.tt</Link>
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ZUMOAPPNAME.csproj</LastGenOutput>
+    </None>
+    <None Include="..\xamarin.ios\ZUMOAPPNAME\packages.config">
+      <Link>xamarin.ios\ZUMOAPPNAME\packages.config</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>packages.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="..\xamarin.ios\ZUMOAPPNAME\packages.tt">
+      <Link>xamarin.ios\ZUMOAPPNAME\packages.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>packages.config</LastGenOutput>
     </None>
     <None Include="TextTemplating\Microsoft.TextTemplating.targets" />
   </ItemGroup>
