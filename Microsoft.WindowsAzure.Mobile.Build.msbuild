@@ -18,7 +18,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
 
     <!--TODO : Detect JS SDK version-->
-    <JSSDKVersion>1.2.7</JSSDKVersion>
+    <JSSDKVersion>2.0.0-beta</JSSDKVersion>
 
     <!--Variable to override iOS SDK-->
     <iOSSDK></iOSSDK>
@@ -159,7 +159,7 @@
     </ItemGroup>
     <Copy SourceFiles="@(DotNetService)"
           DestinationFiles="@(DotNetService->'$(QuickStartsSourceDirectory)\dotnet-service\%(RecursiveDir)%(Filename)%(Extension)')" />
-    
+
     <!-- Build "Try Mobile Apps" service quickstart -->
     <MSBuild Projects="$(MSBuildProjectDirectory)\backend\try-mobile-apps\try-mobile-apps\TryMobileApps.csproj" Properties="Configuration=$(Configuration)"/>
     <!-- Copy the SQL CE native binaries to the bin folder - don't do this as a post build event as this will break online editing with Monaco -->
@@ -280,4 +280,3 @@
   <!-- Full -->
   <Target Name="Full" DependsOnTargets="Clean;DownloadSDK;BuildQuickStarts;" />
 </Project>
-

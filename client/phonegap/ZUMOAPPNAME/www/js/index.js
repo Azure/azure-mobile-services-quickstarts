@@ -33,8 +33,8 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        
-        var client = new WindowsAzure.MobileServiceClient('ZUMOAPPURL', 'ZUMOAPPKEY');
+
+        var client = new WindowsAzure.MobileServiceClient('ZUMOAPPURL', 'ZUMOGATEWAYURL', 'ZUMOAPPKEY');
         todoItemTable = client.getTable('todoitem');
 
         // Read current data and rebuild UI.
