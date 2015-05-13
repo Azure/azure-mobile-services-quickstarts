@@ -197,7 +197,9 @@
       <HintPath>..\packages\System.Spatial.5.6.3\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\dalander.pubxml" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\CustomConfigProvider.cs" />
     <Compile Include="App_Start\CustomOwinAppBuilder.cs" />
@@ -212,11 +214,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App\page.js" />
-    <Content Include="App\styles.css" />
+    <Content Include="jsclient\page.js" />
+    <Content Include="jsclient\styles.css" />
     <Content Include="App_Data\readme.txt" />
     <Content Include="Global.asax" />
-    <Content Include="index.html" />
+    <Content Include="jsclient\index.html" />
     <Content Include="readme.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

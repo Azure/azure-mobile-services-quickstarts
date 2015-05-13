@@ -24,6 +24,7 @@
             // and application key. You're all set to start working with your Mobile Service!
             var client = new WindowsAzure.MobileServiceClient(
                 "ZUMOAPPURL",
+                "ZUMOGATEWAYURL",
                 "ZUMOAPPKEY"
 			);
 
@@ -31,7 +32,8 @@
             // Uncomment this code for configuring the MobileServiceClient to communicate with your local
             // test project for debugging purposes.
             // var client = new WindowsAzure.MobileServiceClient(
-            // 	"http://localhost:ZUMONETRUNTIMESERVERPORT"
+            // 	   "http://localhost:ZUMONETRUNTIMESERVERPORT",
+            //     "ZUMOGATEWAYURL"
             // );
 <# } #>
 
@@ -49,7 +51,7 @@
 
             var refreshTodoItems = function () {
                 // This code refreshes the entries in the list view be querying the TodoItems table.
-                // The query excludes completed TodoItems                
+                // The query excludes completed TodoItems
                 todoTable.where({ complete: false })
                     .read()
                     .done(function (results) {
@@ -59,8 +61,8 @@
             };
 
             var updateCheckedTodoItem = function (todoItem) {
-                // This code takes a freshly completed TodoItem and updates the database. When the MobileService 
-                // responds, the item is removed from the list 
+                // This code takes a freshly completed TodoItem and updates the database. When the MobileService
+                // responds, the item is removed from the list
                 todoTable.update(todoItem).done(function (item) {
                     todoItems.splice(todoItems.indexOf(item), 1);
                 });

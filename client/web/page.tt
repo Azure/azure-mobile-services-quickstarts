@@ -4,13 +4,14 @@
 $(function() {
     // This MobileServiceClient has been configured to communicate with your Mobile Service's url
     // and application key. You're all set to start working with your Mobile Service!
-    var client = new WindowsAzure.MobileServiceClient('ZUMOAPPURL', 'ZUMOAPPKEY');
+    var client = new WindowsAzure.MobileServiceClient('ZUMOAPPURL', 'ZUMOGATEWAYURL', 'ZUMOAPPKEY');
 
 <# if (Runtime=="DOTNET") { #>
     // Uncomment this code for configuring the MobileServiceClient to communicate with your local
     // test project for debugging purposes.
     // var client = new WindowsAzure.MobileServiceClient(
-    //    "http://localhost:ZUMONETRUNTIMESERVERPORT"
+    //    "http://localhost:ZUMONETRUNTIMESERVERPORT",
+    //    "ZUMOGATEWAYURL"
     // );
 <# } #>
 
