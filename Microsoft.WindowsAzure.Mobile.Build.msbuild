@@ -126,7 +126,7 @@
     <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices -Prerelease -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sdk"' LogStandardErrorAsError="true" />
     <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.SQLiteStore -Prerelease -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sqllitestore"' LogStandardErrorAsError="true" />
     <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.WinJS -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages"' LogStandardErrorAsError="true" />
-    <Exec Command='"$(NugetExe)" install "$(MSBuildProjectDirectory)\backend\try-mobile-apps\try-mobile-apps\packages.config" -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\try-mobile-apps\packages"' LogStandardErrorAsError="true" />
+    <Exec Command='"$(NugetExe)" install "$(MSBuildProjectDirectory)\backend\try-mobile-apps\packages.config" -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\try-mobile-apps\packages"' LogStandardErrorAsError="true" />
 
     <!--Download iOS SDK-->
     <HttpDownload DownloadUrl="https://go.microsoft.com/fwLink/?LinkID=529823" PackageDirectory="$(SDKRootPath)\packages" SDKPackage="iOS" Condition=" '$(iOSSDK)' == ''" />
@@ -161,14 +161,15 @@
           DestinationFiles="@(DotNetService->'$(QuickStartsSourceDirectory)\dotnet-service\%(RecursiveDir)%(Filename)%(Extension)')" />
 
     <!-- Build "Try Mobile Apps" service quickstart -->
-    <MSBuild Projects="$(MSBuildProjectDirectory)\backend\try-mobile-apps\try-mobile-apps\TryMobileApps.csproj" Properties="Configuration=$(Configuration)"/>
+    <MSBuild Projects="$(MSBuildProjectDirectory)\backend\try-mobile-apps\TryMobileApps.csproj" Properties="Configuration=$(Configuration)"/>
     <!-- Copy the SQL CE native binaries to the bin folder - don't do this as a post build event as this will break online editing with Monaco -->
     <ItemGroup>
-      <TryMobileApps Include="$(MSBuildProjectDirectory)\backend\try-mobile-apps\packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\**\*.*" />
+      <TryMobileApps Include="$(MSBuildProjectDirectory)\backend\try-mobile-apps\packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" />
     </ItemGroup>
     <Copy SourceFiles="@(TryMobileApps)"
-          DestinationFiles="@(TryMobileApps->'$(MSBuildProjectDirectory)\backend\try-mobile-apps\try-mobile-apps\bin\%(RecursiveDir)%(Filename)%(Extension)')" />
-    <Exec Command='"$(ZipPath)" a -tzip $(OutputPath)\QuickStarts\TryMobileApps.zip $(MSBuildProjectDirectory)\backend\try-mobile-apps\try-mobile-apps\* '/>
+          DestinationFiles="@(TryMobileApps->'$(MSBuildProjectDirectory)\backend\try-mobile-apps\bin\x86\%(RecursiveDir)%(Filename)%(Extension)')" />
+        
+    <Exec Command='"$(ZipPath)" a -tzip $(OutputPath)\QuickStarts\TryMobileApps.zip $(MSBuildProjectDirectory)\backend\try-mobile-apps\* -xr!obj -xr!packages  -x!"bin\*.xml" -xr!de -xr!es -xr!fr -xr!it -xr!ja -xr!ko -xr!ru -xr!zh-Hans -xr!zh-Hant'/>
 
     <MSBuild Projects="$(QuickStartsSourceDirectory)\setup\Setup.csproj" Targets="TransformAll"
          Properties="Runtime=NODE;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);StoreSDKVersion=$(StorePackageVersion);WinJSPackageVersion=$(WinJSPackageVersion);" />
