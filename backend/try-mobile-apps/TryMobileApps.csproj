@@ -204,7 +204,6 @@
     <Compile Include="App_Start\CustomConfigProvider.cs" />
     <Compile Include="App_Start\CustomOwinAppBuilder.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TodoItemController.cs" />
     <Compile Include="DataObjects\TodoItem.cs" />
     <Compile Include="Models\TryMobileAppsContext.cs" />
