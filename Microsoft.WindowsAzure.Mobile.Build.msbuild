@@ -169,7 +169,7 @@
     <Copy SourceFiles="@(TryMobileApps)"
           DestinationFiles="@(TryMobileApps->'$(MSBuildProjectDirectory)\backend\try-mobile-apps\bin\x86\%(RecursiveDir)%(Filename)%(Extension)')" />
         
-    <Exec Command='"$(ZipPath)" a -tzip $(OutputPath)\QuickStarts\TryMobileApps.zip $(MSBuildProjectDirectory)\backend\try-mobile-apps\* -xr!obj -xr!packages'/>
+    <Exec Command='"$(ZipPath)" a -tzip $(OutputPath)\QuickStarts\TryMobileApps.zip $(MSBuildProjectDirectory)\backend\try-mobile-apps\* -xr!obj -xr!packages  -x!"bin\*.xml" -xr!de -xr!es -xr!fr -xr!it -xr!ja -xr!ko -xr!ru -xr!zh-Hans -xr!zh-Hant'/>
 
     <MSBuild Projects="$(QuickStartsSourceDirectory)\setup\Setup.csproj" Targets="TransformAll"
          Properties="Runtime=NODE;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);StoreSDKVersion=$(StorePackageVersion);WinJSPackageVersion=$(WinJSPackageVersion);" />
