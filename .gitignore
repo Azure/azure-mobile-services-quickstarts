@@ -52,3 +52,6 @@ client/xamarin.iOS/ZUMOAPPNAME/packages.config
 client/xamarin.iOS/ZUMOAPPNAME/ZUMOAPPNAME.csproj
 backend/dotnet/Quickstart/ZUMOAPPNAMEService/packages.config
 backend/dotnet/Quickstart/ZUMOAPPNAMEService/ZUMOAPPNAMEService.csproj
+client/xamarin.forms/*.sln
+client/xamarin.forms/**/*.config
+client/xamarin.forms/**/*.csproj

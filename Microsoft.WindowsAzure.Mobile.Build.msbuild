@@ -57,6 +57,12 @@
       <ZipFileName>Xamarin_Android.zip</ZipFileName>
     </QuickStart>
 
+    <QuickStart Include=">Xamarin_Forms" >
+      <Runtime>Node</Runtime>
+      <SourcePath>xamarin.forms</SourcePath>
+      <ZipFileName>Xamarin_Forms.zip</ZipFileName>
+    </QuickStart>
+
     <!-- DotNet quickstarts -->
     <QuickStart Include="Existing_DotNet">
       <Runtime>DotNet</Runtime>
