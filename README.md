@@ -15,8 +15,8 @@ and [Android apps](http://azure.microsoft.com/en-us/documentation/articles/mobil
 
 To get the source code of our SDKs and samples via **git** just type:
 
-    git clone https://github.com/Azure/azure-mobile-services.git
-    cd ./azure-mobile-services/
+    git clone https://github.com/Azure/azure-mobile-services-quickstarts.git
+    cd ./azure-mobile-services-quickstarts/
 
 ## Building Quickstarts
 
