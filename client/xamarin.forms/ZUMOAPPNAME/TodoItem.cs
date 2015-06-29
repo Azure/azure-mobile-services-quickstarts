@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json;
 
 namespace ZUMOAPPNAME
@@ -38,6 +39,8 @@ namespace ZUMOAPPNAME
 			set { done = value;}
 		}
 
+        [Version]
+        public string Version { get; set; }
 	}
 }
 
