@@ -19,6 +19,7 @@ namespace ZUMOAPPNAME
 		{
 			client = new MobileServiceClient(
 				Constants.ApplicationURL,
+				Constants.GatewayURL,
 				Constants.ApplicationKey);
 
 			this.todoTable = client.GetTable<TodoItem>();
