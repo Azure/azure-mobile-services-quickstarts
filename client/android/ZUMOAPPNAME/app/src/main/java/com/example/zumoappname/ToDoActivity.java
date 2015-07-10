@@ -90,8 +90,8 @@ public class ToDoActivity extends Activity {
 
             // Mobile Service URL and key
             mClient = new MobileServiceClient(
-                    "https://lagash-usa-android-ms-node.azure-mobile.net/",
-                    "kZBrEuurmqBUDudwerxXVXkzvDkiFR64",
+                    "",
+                    "",
                     this).withFilter(new ProgressFilter());
 
             // Get the Mobile Service Table instance to use
