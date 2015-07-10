@@ -159,8 +159,7 @@ public class ToDoActivity extends Activity {
             protected Void doInBackground(Void... params) {
                 try {
 
-                    checkItemInMobileServiceTable(item);
-                    //checkItemInServiceTableSyncTable(item)
+                    checkItemInTable(item);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -187,20 +186,10 @@ public class ToDoActivity extends Activity {
      * @param item
      *            The item to mark
      */
-    public void checkItemInMobileServiceTable(final ToDoItem item) throws ExecutionException, InterruptedException {
+    public void checkItemInTable(ToDoItem item) throws ExecutionException, InterruptedException {
         mToDoTable.update(item).get();
+        //sync().get(); // offline sync
     }
-
-    /**
-     * Mark an item as completed in the Mobile Service Sync Table
-     *
-     * @param item
-     *            The item to mark
-     */
-    /*public void checkItemInServiceTableSyncTable(final ToDoItem item) {
-        mToDoTable.update(item).get();
-        sync().get(); // offline sync
-    }*/
 
     /**
      * Add a new item
@@ -224,8 +213,7 @@ public class ToDoActivity extends Activity {
             @Override
             protected Void doInBackground(Void... params) {
                 try {
-                    final ToDoItem entity = addItemInMobileServiceTable(item);
-                    //final ToDoItem entity = addItemInnServiceTableSyncTable(item);
+                    final ToDoItem entity = addItemInTable(item);
 
                     runOnUiThread(new Runnable() {
                         @Override
@@ -253,21 +241,11 @@ public class ToDoActivity extends Activity {
      * @param item
      *            The item to mark
      */
-    public ToDoItem addItemInMobileServiceTable(final ToDoItem item) throws ExecutionException, InterruptedException {
-        return mToDoTable.insert(item).get();
-    }
-
-    /**
-     * Mark an item as completed in the Mobile Service Sync Table
-     *
-     * @param item
-     *            The item to mark
-     */
-    /*public ToDoItem addItemInnServiceTableSyncTable(final ToDoItem item) {
-        final ToDoItem entity = mToDoTable.insert(item).get();
-        sync().get(); // offline sync
+    public ToDoItem addItemInTable(ToDoItem item) throws ExecutionException, InterruptedException {
+        ToDoItem entity = mToDoTable.insert(item).get();
+        //sync().get(); // offline sync
         return entity;
-    }*/
+    }
 
     /**
      * Refresh the list with the items in the Table
