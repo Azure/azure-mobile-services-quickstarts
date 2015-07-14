@@ -52,6 +52,7 @@ public class ToDoActivity extends Activity {
      */
     private MobileServiceTable<ToDoItem> mToDoTable;
 
+    //Offline Sync
     /**
      * Mobile Service Table used to access and Sync data
      */
@@ -97,6 +98,8 @@ public class ToDoActivity extends Activity {
             // Get the Mobile Service Table instance to use
 
             mToDoTable = mClient.getTable(ToDoItem.class);
+
+            // Offline Sync
             //mToDoTable = mClient.getSyncTable("ToDoItem", ToDoItem.class);
 
             //Init local storage
@@ -188,7 +191,6 @@ public class ToDoActivity extends Activity {
      */
     public void checkItemInTable(ToDoItem item) throws ExecutionException, InterruptedException {
         mToDoTable.update(item).get();
-        //sync().get(); // offline sync
     }
 
     /**
@@ -243,7 +245,6 @@ public class ToDoActivity extends Activity {
      */
     public ToDoItem addItemInTable(ToDoItem item) throws ExecutionException, InterruptedException {
         ToDoItem entity = mToDoTable.insert(item).get();
-        //sync().get(); // offline sync
         return entity;
     }
 
@@ -260,8 +261,9 @@ public class ToDoActivity extends Activity {
             protected Void doInBackground(Void... params) {
 
                 try {
-
                     final List<ToDoItem> results = refreshItemsFromMobileServiceTable();
+
+                    //Offline Sync
                     //final List<ToDoItem> results = refreshItemsFromMobileServiceTableSyncTable();
 
                     runOnUiThread(new Runnable() {
@@ -294,7 +296,7 @@ public class ToDoActivity extends Activity {
                 eq(val(false)).execute().get();
     }
 
-
+    //Offline Sync
     /**
      * Refresh the list with the items in the Mobile Service Sync Table
      */
@@ -349,6 +351,7 @@ public class ToDoActivity extends Activity {
         return runAsyncTask(task);
     }
 
+    //Offline Sync
     /**
      * Sync the current context and the Mobile Service Sync Table
      * @return
