@@ -236,10 +236,10 @@ public class ToDoActivity extends Activity {
     }
 
     /**
-     * Mark an item as completed in the Mobile Service Table
+     * Add an item to the Mobile Service Table
      *
      * @param item
-     *            The item to mark
+     *            The item to Add
      */
     public ToDoItem addItemInTable(ToDoItem item) throws ExecutionException, InterruptedException {
         ToDoItem entity = mToDoTable.insert(item).get();
