@@ -16,6 +16,8 @@ namespace ZUMOAPPNAME.iOS
 
 			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 
+            SQLitePCL.CurrentPlatform.Init();
+
 			LoadApplication (new App ());
 
 			return base.FinishedLaunching (app, options);
