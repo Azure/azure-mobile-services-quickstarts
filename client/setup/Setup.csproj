@@ -52,6 +52,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>page.tt</DependentUpon>
     </Content>
+    <Content Include="..\android\ZUMOAPPNAME\app\build.gradle">
+      <Link>android\ZUMOAPPNAME\app\build.gradle</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>build.tt</DependentUpon>
+    </Content>
     <Content Include="..\windows-universal-cs\ZUMOAPPNAME\ZUMOAPPNAME.Windows\ZUMOAPPNAME.Windows.csproj">
       <Link>windows-univeresal-cs\ZUMOAPPNAME.Windows\ZUMOAPPNAME.Windows.csproj</Link>
       <AutoGen>True</AutoGen>
@@ -184,6 +190,11 @@
       <Link>web\page.tt</Link>
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>page.js</LastGenOutput>
+    </None>
+    <None Include="..\android\ZUMOAPPNAME\app\build.tt">
+      <Link>android\ZUMOAPPNAME\app\build.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>build.gradle</LastGenOutput>
     </None>
     <None Include="..\windows-universal-cs\ZUMOAPPNAME.tt">
       <Link>windows-univeresal-cs\ZUMOAPPNAME.tt</Link>
@@ -442,6 +453,10 @@
     </T4ParameterValues>
     <T4ParameterValues Include="JSSDKVersion">
       <Value>$(JSSDKVersion)</Value>
+      <Visible>false</Visible>
+    </T4ParameterValues>
+    <T4ParameterValues Include="AndroidSDKVersion">
+      <Value>$(AndroidSDKVersion)</Value>
       <Visible>false</Visible>
     </T4ParameterValues>
     <T4ParameterValues Include="StoreSDKVersion">
