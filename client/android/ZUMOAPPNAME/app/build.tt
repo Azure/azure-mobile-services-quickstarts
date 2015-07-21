@@ -1,5 +1,7 @@
+<#@template language="c#" hostspecific="true"#>
+<#@parameter type="System.String" name="AndroidSDKVersion"#>
+<#@ output extension=".gradle" #>
 apply plugin: 'com.android.application'
-
 android {
     compileSdkVersion 20
     buildToolsVersion "19.1.0"
@@ -29,6 +31,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.google.code.gson:gson:2.3'
     compile 'com.google.guava:guava:18.0'
-    compile 'com.microsoft.azure:azure-mobile-services-android-sdk:SDK_VERSION'
+    compile 'com.microsoft.azure:azure-mobile-services-android-sdk:<#=AndroidSDKVersion#>'
 	compile (group: 'com.microsoft.azure', name: 'azure-notifications-handler', version: '1.0.1', ext: 'jar')
 }
