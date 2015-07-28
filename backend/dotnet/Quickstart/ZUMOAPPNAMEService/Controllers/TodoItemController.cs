@@ -15,7 +15,7 @@ namespace ZUMOAPPNAMEService.Controllers
         {
             base.Initialize(controllerContext);
             ZUMOAPPNAMEContext context = new ZUMOAPPNAMEContext();
-            DomainManager = new EntityDomainManager<TodoItem>(context, Request, Services);
+            DomainManager = new EntityDomainManager<TodoItem>(context, Request);
         }
 
         // GET tables/TodoItem

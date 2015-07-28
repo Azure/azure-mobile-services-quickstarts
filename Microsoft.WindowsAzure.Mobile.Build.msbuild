@@ -125,10 +125,7 @@
     <!--Restore required nuget packages-->
     <Exec Command='"$(NugetExe)" install 7-Zip.CommandLine -source $(DefaultNugetPackageSource) -o "$(MSBuildProjectDirectory)\packages" -Version 9.20.0' LogStandardErrorAsError="true" />
 
-    <Exec Command='"$(NugetExe)" install Microsoft.Azure.Mobile.Server -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\dotnet\packages"' LogStandardErrorAsError="true" />
-    <Exec Command='"$(NugetExe)" install Microsoft.Azure.Mobile.Server.Entity -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\dotnet\packages"' LogStandardErrorAsError="true" />
-    <Exec Command='"$(NugetExe)" install Microsoft.Azure.Mobile.Server.Tables -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\dotnet\packages"' LogStandardErrorAsError="true" />
-    <Exec Command='"$(NugetExe)" install Microsoft.Azure.Mobile.Server.AppService -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\dotnet\packages"' LogStandardErrorAsError="true" />
+    <Exec Command='"$(NugetExe)" install Microsoft.Azure.Mobile.Server.Quickstart -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\dotnet\packages"' LogStandardErrorAsError="true" />
     <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices -Prerelease -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sdk"' LogStandardErrorAsError="true" />
     <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.SQLiteStore -Prerelease -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sqllitestore"' LogStandardErrorAsError="true" />
     <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.WinJS -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages"' LogStandardErrorAsError="true" />
@@ -174,7 +171,7 @@
     </ItemGroup>
     <Copy SourceFiles="@(TryMobileApps)"
           DestinationFiles="@(TryMobileApps->'$(MSBuildProjectDirectory)\backend\try-mobile-apps\bin\x86\%(RecursiveDir)%(Filename)%(Extension)')" />
-        
+
     <Exec Command='"$(ZipPath)" a -tzip $(OutputPath)\QuickStarts\TryMobileApps.zip $(MSBuildProjectDirectory)\backend\try-mobile-apps\* -xr!obj -xr!packages  -x!"bin\*.xml" -xr!de -xr!es -xr!fr -xr!it -xr!ja -xr!ko -xr!ru -xr!zh-Hans -xr!zh-Hant'/>
 
     <MSBuild Projects="$(QuickStartsSourceDirectory)\setup\Setup.csproj" Targets="TransformAll"

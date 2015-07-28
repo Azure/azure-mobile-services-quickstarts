@@ -29,11 +29,12 @@ public string GetVersion(List<NugetPackage> nugetPackages, string id)
     return package.Version;
 }
 
-public string GetAssemblyVersion(List<NugetPackage> nugetPackages, string id)
+public string GetAssemblyVersion(List<NugetPackage> nugetPackages, string packageId, string assemblyName=null)
 {
-    // if there's ever a need for separate ids and assemblyNames, we can elevate these to parameters.
-    string packageId = id;
-    string assemblyName = id;
+    if (assemblyName == null)
+    {
+        assemblyName = packageId;
+    }
     var package = nugetPackages.Where(nugetPackage => string.CompareOrdinal(nugetPackage.Id, packageId) == 0).Single();
     var assemblies = package.AssemblyNames.Where(an => an.Name == assemblyName);
     // if there's more than one version, we're not sure what to pick, so just throw. this shouldn't happen.
@@ -98,7 +99,7 @@ public class NugetPackage : IEquatable<NugetPackage>
     {
         return this.Id.GetHashCode();
     }
-    
+
     public static NugetPackage Create(string nupkgFile)
     {
         ExtractNuspec(nupkgFile);
@@ -109,12 +110,12 @@ public class NugetPackage : IEquatable<NugetPackage>
         doc.Load(nuspecFile);
         XmlNode version = SelectSingleNode(doc, "/ns:package/ns:metadata/ns:version");
         XmlNode id = SelectSingleNode(doc, "/ns:package/ns:metadata/ns:id");
-        
+
         var dotNetFolders = directoryInfo.GetDirectories("net*", SearchOption.AllDirectories);
         var assemblyFiles = dotNetFolders.SelectMany (nf => nf.GetFiles(@"*.dll", SearchOption.TopDirectoryOnly));
 
         IEnumerable<AssemblyName> assemblyNames = assemblyFiles.Select(af => AssemblyName.GetAssemblyName(af.FullName));
-        
+
         return new NugetPackage(id.InnerText, version.InnerText, assemblyNames);
     }
 
@@ -137,7 +138,7 @@ public class NugetPackage : IEquatable<NugetPackage>
     // try to find the node in all of our namespaces
     private static XmlNode SelectSingleNode(XmlDocument doc, string path)
     {
-        XmlNode packageNode = doc.ChildNodes.Cast<XmlNode>().Where (xn => xn.Name == "package").Single();        
+        XmlNode packageNode = doc.ChildNodes.Cast<XmlNode>().Where (xn => xn.Name == "package").Single();
         var xmlNameSpaceManager = new XmlNamespaceManager(doc.NameTable);
         xmlNameSpaceManager.AddNamespace("ns", packageNode.NamespaceURI);
         XmlNode node = doc.SelectSingleNode(path, xmlNameSpaceManager);
