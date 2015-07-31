@@ -27,12 +27,8 @@
     Mobile App, these settings will be overridden by the values specified
     in the portal. -->
     <add key="MS_MobileServiceName" value="ZUMOAPPNAME" />
-    <add key="MS_ApplicationKey" value="Overridden by portal settings" />
-    <add key="MS_MasterKey" value="Overridden by portal settings" />
     <add key="MS_SigningKey" value="Overridden by portal settings" />
-    <add key="EMA_MicroserviceID" value="ZUMOAPPNAME" />
     <add key="EMA_RuntimeUrl" value="ZUMOGATEWAYURL" />
-    <add key="EMA_Secret" value="Overridden by portal settings" />
   </appSettings>
   <system.web>
     <httpRuntime targetFramework="4.5" />
@@ -50,6 +46,14 @@
   </system.webServer>
   <runtime>
     <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1" xmlns:bcl="urn:schemas-microsoft-com:bcl">
+      <dependentAssembly>
+        <assemblyIdentity name="System.Net.Http.Formatting" publicKeyToken="31BF3856AD364E35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.AspNet.WebApi.Client", "System.Net.Http.Formatting")#>" newVersion="<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.AspNet.WebApi.Client", "System.Net.Http.Formatting")#>" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Http" publicKeyToken="31BF3856AD364E35" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.AspNet.WebApi.Core", "System.Web.Http")#>" newVersion="<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.AspNet.WebApi.Core", "System.Web.Http")#>" />
+      </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="System.Spatial" publicKeyToken="31bf3856ad364e35" culture="neutral" />
         <bindingRedirect oldVersion="0.0.0.0-<#= this.GetAssemblyVersion(nugetPackages, "System.Spatial")#>" newVersion="<#= this.GetAssemblyVersion(nugetPackages, "System.Spatial")#>" />
@@ -71,20 +75,8 @@
         <bindingRedirect oldVersion="0.0.0.0-<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.Owin.Security")#>" newVersion="<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.Owin")#>" />
       </dependentAssembly>
       <dependentAssembly>
-        <assemblyIdentity name="Microsoft.Owin.Security.Cookies" publicKeyToken="31bf3856ad364e35" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.Owin.Security.Cookies")#>" newVersion="<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.Owin.Security.Cookies")#>" />
-      </dependentAssembly>
-      <dependentAssembly>
-        <assemblyIdentity name="Microsoft.Owin.Security.OAuth" publicKeyToken="31bf3856ad364e35" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.Owin.Security.OAuth")#>" newVersion="<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.Owin.Security.OAuth")#>" />
-      </dependentAssembly>
-      <dependentAssembly>
         <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
         <bindingRedirect oldVersion="0.0.0.0-<#= this.GetAssemblyVersion(nugetPackages, "Newtonsoft.Json")#>" newVersion="<#= this.GetAssemblyVersion(nugetPackages, "Newtonsoft.Json")#>" />
-      </dependentAssembly>
-      <dependentAssembly>
-        <assemblyIdentity name="Microsoft.Azure.AppService.ApiApps.Service" publicKeyToken="31bf3856ad364e35" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.Azure.AppService.ApiApps.Service")#>" newVersion="<#= this.GetAssemblyVersion(nugetPackages, "Microsoft.Azure.AppService.ApiApps.Service")#>" />
       </dependentAssembly>
     </assemblyBinding>
   </runtime>

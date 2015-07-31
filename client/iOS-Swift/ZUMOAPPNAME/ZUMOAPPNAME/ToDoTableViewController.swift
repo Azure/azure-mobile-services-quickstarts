@@ -44,11 +44,11 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
         // Do any additional setup after loading the view, typically from a nib.
         
         let client = MSClient(applicationURLString: "ZUMOAPPURL", gatewayURLString: "ZUMOGATEWAYURL", applicationKey: "ZUMOAPPKEY")
-        let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+        let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
         let store = MSCoreDataStore(managedObjectContext: managedObjectContext)
         client.syncContext = MSSyncContext(delegate: nil, dataSource: store, callback: nil)
         
-        self.table = client.syncTableWithName("TodoItem")!
+        self.table = client.syncTableWithName("TodoItem")
         self.refreshControl?.addTarget(self, action: "onRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         
         var error : NSError? = nil
@@ -74,10 +74,10 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
             if error != nil {
                 // A real application would handle various errors like network conditions,
                 // server conflicts, etc via the MSSyncContextDelegate
-                println("Error: \(error.description)")
+                println("Error: \(error!.description)")
                 
                 // We will just discard our changes and keep the servers copy for simplicity                
-                if let opErrors = error.userInfo?[MSErrorPushResultKey] as? Array<MSTableOperationError> {
+                if let opErrors = error!.userInfo?[MSErrorPushResultKey] as? Array<MSTableOperationError> {
                     for opError in opErrors {
                         println("Attempted operation to item \(opError.itemId)")
                         if (opError.operation == .Insert || opError.operation == .Delete) {
@@ -85,7 +85,7 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
                             opError.cancelOperationAndDiscardItemWithCompletion(nil)
                         } else {
                             println("Update failed, reverting to server's copy")
-                            opError.cancelOperationAndUpdateItem(opError.serverItem, completion: nil)
+                            opError.cancelOperationAndUpdateItem(opError.serverItem!, completion: nil)
                         }
                     }
                 }
@@ -128,7 +128,7 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
         self.table!.update(item) { (error) -> Void in
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             if error != nil {
-                println("Error: \(error.description)")
+                println("Error: \(error!.description)")
                 return
             }
         }
@@ -197,7 +197,7 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
             (item, error) in
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             if error != nil {
-                println("Error: " + error.description)
+                println("Error: " + error!.description)
             }
         }
     }
