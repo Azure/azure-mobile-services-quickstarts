@@ -22,6 +22,11 @@ To get the source code of our SDKs and samples via **git** just type:
 
 Run "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe .\Microsoft.WindowsAzure.Mobile.Build.msbuild"
 
+NOTE:
+If you are having trouble building with the above line, you can force MsBuild to use a private packages directory by setting NugetPackageSource appropriately: 
+"C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /p:NugetPackageSource="C:\git\azure-mobile-services-quickstarts\backend\dotnet\private-packages;https://www.nuget.org/api/v2/" Microsoft.WindowsAzure.Mobile.Build.msbuild"
+
+
 Build script downloads latest official nuget packages, updates quickstarts with required versions and dependencies & packs required projects to appropriate quickstarts.
 
 ### Prerequisites
