@@ -6,6 +6,8 @@ using Microsoft.Azure.Mobile.Server.Config;
 
 namespace ZUMOAPPNAMEService.Controllers
 {
+    // Use the MobileAppController attribute to for each ApiController you want to use
+    // from your mobile clients
     [MobileAppController]
     public class ValuesController : ApiController
     {
