@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using Microsoft.Azure.Mobile.Server.Config;
 
-namespace jawalqsprechangeService.Controllers
+namespace ZUMOAPPNAMEService.Controllers
 {
     // Use the MobileAppController attribute for each ApiController you want to use  
     // from your mobile clients 
