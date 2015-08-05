@@ -49,6 +49,9 @@
     <Content Include="Quickstart\ZUMOAPPNAMEService\Controllers\TodoItemController.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Quickstart\ZUMOAPPNAMEService\Controllers\ValuesController.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Quickstart\ZUMOAPPNAMEService\DataObjects\TodoItem.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
