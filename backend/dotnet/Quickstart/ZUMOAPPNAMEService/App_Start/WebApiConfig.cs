@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Web.Http;
+using System.Web.Http.Tracing;
 using Microsoft.Azure.Mobile.Server;
 using Microsoft.Azure.Mobile.Server.Config;
 using ZUMOAPPNAMEService.DataObjects;
@@ -14,6 +15,12 @@ namespace ZUMOAPPNAMEService
         public static void Register()
         {
             HttpConfiguration config = new HttpConfiguration();
+
+            // Access your mobile app settings
+            MobileAppSettingsDictionary mobileAppSettings = config.GetMobileAppSettingsProvider().GetMobileAppSettings();
+
+            SystemDiagnosticsTraceWriter traceWriter = config.EnableSystemDiagnosticsTracing();
+            traceWriter.MinimumLevel = TraceLevel.Info;
 
             new MobileAppConfiguration()
                 .UseDefaultConfiguration()
