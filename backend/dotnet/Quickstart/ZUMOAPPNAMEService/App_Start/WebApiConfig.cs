@@ -16,7 +16,7 @@ namespace ZUMOAPPNAMEService
         {
             HttpConfiguration config = new HttpConfiguration();
 
-            //For more information on Web API tracing, see http://www.asp.net/web-api/overview/testing-and-debugging/tracing-in-aspnet-web-api
+            //For more information on Web API tracing, see http://go.microsoft.com/fwlink/?LinkId=620681
             config.EnableSystemDiagnosticsTracing();
 
             new MobileAppConfiguration()
