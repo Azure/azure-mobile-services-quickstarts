@@ -23,7 +23,7 @@ namespace ZUMOAPPNAMEService
                 .UseDefaultConfiguration()
                 .ApplyTo(config);
 
-            Database.SetInitializer(new jawalquickstart001Initializer());
+            Database.SetInitializer(new ZUMOAPPNAMEInitializer());
         }
     }
 

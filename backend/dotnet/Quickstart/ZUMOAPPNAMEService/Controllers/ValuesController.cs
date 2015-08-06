@@ -20,8 +20,6 @@ namespace ZUMOAPPNAMEService.Controllers
             ITraceWriter traceWriter = this.Configuration.Services.GetTraceWriter();
             traceWriter.Info("Hello from " + settings.Name);
 
-            traceWriter.Info("GET action on ValuesController");
-
             return "Hello World!";
         }
 
