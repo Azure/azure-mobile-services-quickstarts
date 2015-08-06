@@ -463,6 +463,10 @@
       <Value>$(StoreSDKVersion)</Value>
       <Visible>false</Visible>
     </T4ParameterValues>    
+    <T4ParameterValues Include="WinJSPackageVersion">
+      <Value>$(WinJSPackageVersion)</Value>
+      <Visible>false</Visible>
+    </T4ParameterValues>
   </ItemGroup>
   <PropertyGroup>
     <TransformOutOfDateOnly>false</TransformOutOfDateOnly>

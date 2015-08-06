@@ -209,7 +209,7 @@
     </ItemGroup>
 
     <MSBuild Projects="$(QuickStartsSourceDirectory)\setup\Setup.csproj" Targets="TransformAll"
-             Properties="Runtime=DOTNET;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);StoreSDKVersion=$(StorePackageVersion);WinJSPackageVersion=$(WinJSPackageVersion);" />
+             Properties="Runtime=DOTNET;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);AndroidSDKVersion=$(AndroidSDKVersion);StoreSDKVersion=$(StorePackageVersion);WinJSPackageVersion=$(WinJSPackageVersion);" />
 
     <MSBuild Projects="@(_BuildQuickStartsDotNet)"  Targets="_BuildQuickStartParallel"
              Properties="Runtime=DOTNET;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);StoreSDKVersion=$(StorePackageVersion);WinJSPackageVersion=$(WinJSPackageVersion);" />
