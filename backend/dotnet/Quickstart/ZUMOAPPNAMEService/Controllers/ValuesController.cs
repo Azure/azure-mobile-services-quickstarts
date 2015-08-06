@@ -15,8 +15,12 @@ namespace ZUMOAPPNAMEService.Controllers
         // GET api/values
         public string Get()
         {
-            //This method of tracing replaces functionality previously provided through ApiServices
-            Configuration.Services.GetTraceWriter().Info(Request, "ValuesController", "Default GET endpoint which returns 'Hello World!'");
+            MobileAppSettingsDictionary settings = this.Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
+
+            ITraceWriter traceWriter = this.Configuration.Services.GetTraceWriter();
+            traceWriter.Info("Hello from " + settings.Name);
+
+            traceWriter.Info("GET action on ValuesController");
 
             return "Hello World!";
         }

@@ -16,17 +16,14 @@ namespace ZUMOAPPNAMEService
         {
             HttpConfiguration config = new HttpConfiguration();
 
-            // Access your mobile app settings
-            MobileAppSettingsDictionary mobileAppSettings = config.GetMobileAppSettingsProvider().GetMobileAppSettings();
-
-            SystemDiagnosticsTraceWriter traceWriter = config.EnableSystemDiagnosticsTracing();
-            traceWriter.MinimumLevel = TraceLevel.Info;
+            //For more information on Web API tracing, see http://www.asp.net/web-api/overview/testing-and-debugging/tracing-in-aspnet-web-api
+            SystemDiagnosticsTraceWriter systemDiagnosticsTraceWriter = config.EnableSystemDiagnosticsTracing();
 
             new MobileAppConfiguration()
                 .UseDefaultConfiguration()
                 .ApplyTo(config);
 
-            Database.SetInitializer(new ZUMOAPPNAMEInitializer());
+            Database.SetInitializer(new jawalquickstart001Initializer());
         }
     }
 
