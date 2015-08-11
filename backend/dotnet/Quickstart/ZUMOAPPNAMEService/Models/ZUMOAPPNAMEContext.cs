@@ -29,7 +29,7 @@ namespace ZUMOAPPNAMEService.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            string schema = ServiceSettingsDictionary.GetSchemaName();
+            string schema = MobileAppSettingsDictionary.GetSchemaName();
             if (!string.IsNullOrEmpty(schema))
             {
                 modelBuilder.HasDefaultSchema(schema);
