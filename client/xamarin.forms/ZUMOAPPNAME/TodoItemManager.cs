@@ -1,4 +1,4 @@
-﻿// To add offline sync support: add the NuGet package Microsoft.WindowsAzure.MobileServices.SQLiteStore
+﻿// To add offline sync support: add the NuGet package WindowsAzure.MobileServices.SQLiteStore
 // to all projects in the solution and uncomment the symbol definition OFFLINE_SYNC_ENABLED
 // For Xamarin.iOS, also edit AppDelegate.cs and uncomment the call to SQLitePCL.CurrentPlatform.Init()
 // For more information, see: http://go.microsoft.com/fwlink/?LinkId=620342 
