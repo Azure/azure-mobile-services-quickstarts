@@ -68,11 +68,11 @@ namespace ZUMOAPPNAME
             }
             catch (MobileServiceInvalidOperationException msioe)
             {
-                Debug.WriteLine(@"INVALID {0}", msioe.Message);
+                Debug.WriteLine(@"Invalid sync operation: {0}", msioe.Message);
             }
             catch (Exception e)
             {
-                Debug.WriteLine(@"ERROR {0}", e.Message);
+                Debug.WriteLine(@"Sync error: {0}", e.Message);
             }
             return null;
         }
@@ -129,7 +129,7 @@ namespace ZUMOAPPNAME
                         await error.CancelAndDiscardItemAsync();
                     }
 
-                    Debug.WriteLine(@"ERROR EXECUTING SYNC OPERATION. ITEM: {0} ({1}). OPERATION DISCARDED.", error.TableName, error.Item["id"]);
+                    Debug.WriteLine(@"Error executing sync operation. Item: {0} ({1}). Operation discarded.", error.TableName, error.Item["id"]);
                 }
             }
         }

@@ -72,6 +72,7 @@ namespace ZUMOAPPNAME
                     }
                 }
             }
+
             // prevents background getting highlighted
             todoList.SelectedItem = null;
         }
@@ -88,20 +89,24 @@ namespace ZUMOAPPNAME
         public async void OnRefresh(object sender, EventArgs e)
         {
             var list = (ListView)sender;
-            var success = false;
+            Exception error = null;
             try
             {
                 await RefreshItems(false, true);
-                success = true;
             }
             catch (Exception ex)
             {
-                // requires C# 6
-                //await DisplayAlert ("Refresh Error", "Couldn't refresh data ("+ex.Message+")", "OK");
+                error = ex;
             }
-            list.EndRefresh();
-            if (!success)
-                await DisplayAlert("Refresh Error", "Couldn't refresh data", "OK");
+            finally
+            {
+                list.EndRefresh();
+            }
+
+            if (error != null)
+            {
+                await DisplayAlert("Refresh Error", "Couldn't refresh data (" + ex.Message + ")", "OK");
+            }
         }
 
         public async void OnSyncItems(object sender, EventArgs e)
