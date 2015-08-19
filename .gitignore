@@ -56,3 +56,4 @@ backend/dotnet/Quickstart/ZUMOAPPNAMEService/ZUMOAPPNAMEService.csproj
 client/xamarin.forms/*.sln
 client/xamarin.forms/**/*.config
 client/xamarin.forms/**/*.csproj
+/client/android/ZUMOAPPNAME/app/build.gradle

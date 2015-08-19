@@ -20,6 +20,9 @@
     <!--TODO : Detect JS SDK version-->
     <JSSDKVersion>2.0.0-beta</JSSDKVersion>
 
+	<!--TODO : Detect Android SDK version-->
+    <AndroidSDKVersion>2.0.3</AndroidSDKVersion>
+
     <!--Variable to override iOS SDK-->
     <iOSSDK></iOSSDK>
   </PropertyGroup>
@@ -39,6 +42,12 @@
       <ZipFileName>Windows_Universal_CS.zip</ZipFileName>
     </QuickStart>
 
+	<QuickStart Include="Android">
+      <Runtime>Java</Runtime>
+      <SourcePath>android</SourcePath>
+      <ZipFileName>Android_Java.zip</ZipFileName>
+    </QuickStart>
+	
     <QuickStart Include="Windows_Universal_JS">
       <Runtime>Node</Runtime>
       <SourcePath>windows-universal-js</SourcePath>
@@ -175,7 +184,7 @@
     <Exec Command='"$(ZipPath)" a -tzip $(OutputPath)\QuickStarts\TryMobileApps.zip $(MSBuildProjectDirectory)\backend\try-mobile-apps\* -xr!obj -xr!packages  -x!"bin\*.xml" -xr!de -xr!es -xr!fr -xr!it -xr!ja -xr!ko -xr!ru -xr!zh-Hans -xr!zh-Hant'/>
 
     <MSBuild Projects="$(QuickStartsSourceDirectory)\setup\Setup.csproj" Targets="TransformAll"
-         Properties="Runtime=NODE;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);StoreSDKVersion=$(StorePackageVersion);WinJSPackageVersion=$(WinJSPackageVersion);" />
+         Properties="Runtime=NODE;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);AndroidSDKVersion=$(AndroidSDKVersion);StoreSDKVersion=$(StorePackageVersion);WinJSPackageVersion=$(WinJSPackageVersion);" />
 
     <!-- We don't want to dublicate web QS files so copy them from Node.js runtime QS to NET runtime QS -->
     <ItemGroup>
@@ -210,10 +219,22 @@
     </ItemGroup>
 
     <MSBuild Projects="$(QuickStartsSourceDirectory)\setup\Setup.csproj" Targets="TransformAll"
-             Properties="Runtime=DOTNET;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);StoreSDKVersion=$(StorePackageVersion);WinJSPackageVersion=$(WinJSPackageVersion);" />
+             Properties="Runtime=DOTNET;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);AndroidSDKVersion=$(AndroidSDKVersion);StoreSDKVersion=$(StorePackageVersion);WinJSPackageVersion=$(WinJSPackageVersion);" />
 
     <MSBuild Projects="@(_BuildQuickStartsDotNet)"  Targets="_BuildQuickStartParallel"
              Properties="Runtime=DOTNET;ManagedSDKVersion=$(SDKPackageVersion);JSSDKVersion=$(JSSDKVersion);StoreSDKVersion=$(StorePackageVersion);WinJSPackageVersion=$(WinJSPackageVersion);" />
+
+	<ItemGroup Condition="'@(QuickStart)' != ''">
+      <_BuildQuickStartsJava Include="$(MSBuildProjectFile)" Condition="'%(QuickStart.Runtime)' == 'Java'">
+        <AdditionalProperties>
+          QuickStartPath=%(QuickStart.SourcePath);
+          QuickStartZipFileName=%(QuickStart.ZipFileName);
+          QuickStartRuntime=%(QuickStart.Runtime)
+        </AdditionalProperties>
+      </_BuildQuickStartsJava>
+    </ItemGroup>
+
+	<MSBuild Projects="@(_BuildQuickStartsJava)"  Targets="_BuildQuickStartParallel" Properties="" />
 
     <!-- Execute the private BuildQuickStart task for each quickstart -->
     <ItemGroup Condition="'@(QuickStart)' != ''">

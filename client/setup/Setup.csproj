@@ -52,6 +52,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>page.tt</DependentUpon>
     </Content>
+    <Content Include="..\android\ZUMOAPPNAME\app\build.gradle">
+      <Link>android\ZUMOAPPNAME\app\build.gradle</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>build.tt</DependentUpon>
+    </Content>
     <Content Include="..\windows-universal-cs\ZUMOAPPNAME\ZUMOAPPNAME.Windows\ZUMOAPPNAME.Windows.csproj">
       <Link>windows-univeresal-cs\ZUMOAPPNAME.Windows\ZUMOAPPNAME.Windows.csproj</Link>
       <AutoGen>True</AutoGen>
@@ -156,13 +162,6 @@
       <DependentUpon>ZUMOAPPNAME.WinApp.tt</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\xamarin.forms\WinPhone8\ZUMOAPPNAME\ZUMOAPPNAME.WinPhone.csproj">
-      <Link>xanarin.forms\ZUMOAPPNAME\WinPhone8\ZUMOAPPNAME.WinPhone.csproj</Link>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ZUMOAPPNAME.WinPhone.tt</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\xamarin.forms\WinPhone81\ZUMOAPPNAME\ZUMOAPPNAME.WinPhone81.csproj">
       <Link>xanarin.forms\ZUMOAPPNAME\WinPhone81\ZUMOAPPNAME.WinPhone81.csproj</Link>
       <AutoGen>True</AutoGen>
@@ -184,6 +183,11 @@
       <Link>web\page.tt</Link>
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>page.js</LastGenOutput>
+    </None>
+    <None Include="..\android\ZUMOAPPNAME\app\build.tt">
+      <Link>android\ZUMOAPPNAME\app\build.tt</Link>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>build.gradle</LastGenOutput>
     </None>
     <None Include="..\windows-universal-cs\ZUMOAPPNAME.tt">
       <Link>windows-univeresal-cs\ZUMOAPPNAME.tt</Link>
@@ -387,24 +391,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>packages.config</LastGenOutput>
     </None>
-    <None Include="..\xamarin.forms\WinPhone8\ZUMOAPPNAME.WinPhone.tt">
-      <Link>xamarin.forms\WinPhone8\ZUMOAPPNAME.WinPhone.tt</Link>
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ZUMOAPPNAME.WinPhone.csproj</LastGenOutput>
-    </None>
-    <None Include="..\xamarin.forms\WinPhone8\packages.config">
-      <Link>xamarin.forms\WinPhone8\packages.config</Link>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>packages.tt</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="..\xamarin.forms\WinPhone8\packages.tt">
-      <Link>xamarin.forms\WinPhone8\packages.tt</Link>
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>packages.config</LastGenOutput>
-    </None>
     <None Include="..\xamarin.forms\WinPhone81\ZUMOAPPNAME.WinPhone81.tt">
       <Link>xamarin.forms\WinPhone81\ZUMOAPPNAME.WinPhone81.tt</Link>
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -444,10 +430,18 @@
       <Value>$(JSSDKVersion)</Value>
       <Visible>false</Visible>
     </T4ParameterValues>
+    <T4ParameterValues Include="AndroidSDKVersion">
+      <Value>$(AndroidSDKVersion)</Value>
+      <Visible>false</Visible>
+    </T4ParameterValues>
     <T4ParameterValues Include="StoreSDKVersion">
       <Value>$(StoreSDKVersion)</Value>
       <Visible>false</Visible>
     </T4ParameterValues>    
+    <T4ParameterValues Include="WinJSPackageVersion">
+      <Value>$(WinJSPackageVersion)</Value>
+      <Visible>false</Visible>
+    </T4ParameterValues>
   </ItemGroup>
   <PropertyGroup>
     <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
