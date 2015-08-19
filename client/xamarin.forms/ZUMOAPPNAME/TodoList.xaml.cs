@@ -17,7 +17,7 @@ namespace ZUMOAPPNAME
             // OnPlatform<T> doesn't currently support the "Windows" target platform, so we have this check here.
             if (Device.OS == TargetPlatform.Windows || Device.OS == TargetPlatform.WinPhone)
             {
-                syncButton.IsVisible = true;
+                syncButton.IsVisible = manager.IsOfflineEnabled;
             }
         }
 
