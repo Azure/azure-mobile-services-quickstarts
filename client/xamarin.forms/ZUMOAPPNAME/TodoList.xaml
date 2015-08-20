@@ -23,17 +23,10 @@
         </Grid.ColumnDefinitions>
         <Entry x:Name="newItemName"
                   Placeholder="Item name" />
-        <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+        <StackLayout x:Name="buttonsPanel" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="StartAndExpand">
           <Button Text="+"
                   MinimumHeightRequest="30"
                   Clicked="OnAdd" />
-          <Button Text="Sync items"
-                  x:Name="syncButton"
-                  IsVisible="False"
-                  Grid.Row="1"
-                  HeightRequest="30"
-                  Clicked="OnSyncItems" >
-          </Button>
         </StackLayout>
       </Grid>
     </StackLayout>
