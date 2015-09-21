@@ -75,7 +75,8 @@ class ToDoItemViewController: UIViewController, UINavigationBarDelegate,  UIBarP
     
     func saveItem()
     {
-        let text = self.text.text
-        self.delegate?.didSaveItem(text)
+        if let text = self.text.text {
+            self.delegate?.didSaveItem(text)
+        }
     }
 }
