@@ -95,10 +95,6 @@
     
 }
 
-- (void)viewDidUnload {
-    self.fetchedResultsController = nil;
-}
-
 - (void) refresh
 {
     [self.refreshControl beginRefreshing];
