@@ -40,10 +40,10 @@
     <Content Include="Quickstart\ZUMOAPPNAME.sln">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Quickstart\ZUMOAPPNAMEService\Global.asax">
+    <Content Include="Quickstart\ZUMOAPPNAMEService\Startup.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Quickstart\ZUMOAPPNAMEService\App_Start\WebApiConfig.cs">
+    <Content Include="Quickstart\ZUMOAPPNAMEService\App_Start\Startup.MobileApp.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Quickstart\ZUMOAPPNAMEService\Controllers\TodoItemController.cs">
@@ -53,10 +53,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Quickstart\ZUMOAPPNAMEService\DataObjects\TodoItem.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Quickstart\ZUMOAPPNAMEService\Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Quickstart\ZUMOAPPNAMEService\Models\ZUMOAPPNAMEContext.cs">

@@ -16,5 +16,6 @@ foreach(var nugetPackage in nugetPackages)
 }
 #>
   <package id="Microsoft.Owin.Host.SystemWeb" version="<#= this.GetVersion(nugetPackages, "Microsoft.Owin")#>" targetFramework="net45" />
+  <package id="Microsoft.AspNet.WebApi.Tracing" version="<#= this.GetVersion(nugetPackages, "Microsoft.AspNet.WebApi.Core")#>" targetFramework="net45" />
 </packages>
 <#@ include file="..\..\FindDependentNugets.tt" #>
