@@ -48,12 +48,15 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
         let store = MSCoreDataStore(managedObjectContext: managedObjectContext)
         client.syncContext = MSSyncContext(delegate: nil, dataSource: store, callback: nil)
         
-        self.table = client.syncTableWithName("TodoItem")!
+        self.table = client.syncTableWithName("TodoItem")
         self.refreshControl?.addTarget(self, action: "onRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         
         var error : NSError? = nil
-        if !self.fetchedResultController.performFetch(&error) {
-            println("Unresolved error \(error), \(error?.userInfo)")
+        do {
+            try self.fetchedResultController.performFetch()
+        } catch let error1 as NSError {
+            error = error1
+            print("Unresolved error \(error), \(error?.userInfo)")
             abort()
         }
 
@@ -63,29 +66,28 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
     }
     
     func onRefresh(sender: UIRefreshControl!) {
-        let predicate = NSPredicate(format: "complete == NO")
-        
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         
         self.table!.pullWithQuery(self.table?.query(), queryId: "AllRecords") {
             (error) -> Void in
             
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            
             if error != nil {
                 // A real application would handle various errors like network conditions,
                 // server conflicts, etc via the MSSyncContextDelegate
-                println("Error: \(error.description)")
+                print("Error: \(error!.description)")
                 
                 // We will just discard our changes and keep the servers copy for simplicity                
-                if let opErrors = error.userInfo?[MSErrorPushResultKey] as? Array<MSTableOperationError> {
+                if let opErrors = error!.userInfo[MSErrorPushResultKey] as? Array<MSTableOperationError> {
                     for opError in opErrors {
-                        println("Attempted operation to item \(opError.itemId)")
+                        print("Attempted operation to item \(opError.itemId)")
                         if (opError.operation == .Insert || opError.operation == .Delete) {
-                            println("Insert/Delete, failed discarding changes")
+                            print("Insert/Delete, failed discarding changes")
                             opError.cancelOperationAndDiscardItemWithCompletion(nil)
                         } else {
-                            println("Update failed, reverting to server's copy")
-                            opError.cancelOperationAndUpdateItem(opError.serverItem, completion: nil)
+                            print("Update failed, reverting to server's copy")
+                            opError.cancelOperationAndUpdateItem(opError.serverItem!, completion: nil)
                         }
                     }
                 }
@@ -111,7 +113,7 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
         return UITableViewCellEditingStyle.Delete
     }
     
-    override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String!
+    override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String?
     {
         return "Complete"
     }
@@ -128,7 +130,7 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
         self.table!.update(item) { (error) -> Void in
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             if error != nil {
-                println("Error: \(error.description)")
+                print("Error: \(error!.description)")
                 return
             }
         }
@@ -146,7 +148,7 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier = "Cell"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) as! UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier, forIndexPath: indexPath) 
         cell = configureCell(cell, indexPath: indexPath)
         
         return cell
@@ -197,7 +199,7 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
             (item, error) in
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             if error != nil {
-                println("Error: " + error.description)
+                print("Error: " + error!.description)
             }
         }
     }
