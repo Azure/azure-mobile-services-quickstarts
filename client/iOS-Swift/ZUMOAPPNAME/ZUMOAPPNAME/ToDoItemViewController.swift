@@ -21,10 +21,9 @@ protocol ToDoItemDelegate {
     func didSaveItem(text : String)
 }
 
-class ToDoItemViewController: UIViewController, UINavigationBarDelegate,  UIBarPositioningDelegate, UITextFieldDelegate {
+class ToDoItemViewController: UIViewController,  UIBarPositioningDelegate, UITextFieldDelegate {
     
-    @IBOutlet var NavBar : UINavigationBar!
-    @IBOutlet var text : UITextField!
+    @IBOutlet weak var text: UITextField!
     
     var delegate : ToDoItemDelegate?
     
@@ -32,7 +31,6 @@ class ToDoItemViewController: UIViewController, UINavigationBarDelegate,  UIBarP
     {
         super.viewDidLoad()
         
-        self.NavBar.delegate = self
         self.text.delegate = self
         self.text.becomeFirstResponder()
     }
@@ -46,16 +44,11 @@ class ToDoItemViewController: UIViewController, UINavigationBarDelegate,  UIBarP
         self.text.resignFirstResponder()
     }
     
-    func positionForBar(bar: UIBarPositioning) -> UIBarPosition
-    {
-        return UIBarPosition.TopAttached
-    }
-    
     // Textfield
     
     func textFieldDidEndEditing(textField: UITextField)
     {
-        self.dismissViewControllerAnimated(true, completion: nil);
+        self.navigationController?.popViewControllerAnimated(true);
     }
     
     func textFieldShouldEndEditing(textField: UITextField) -> Bool
