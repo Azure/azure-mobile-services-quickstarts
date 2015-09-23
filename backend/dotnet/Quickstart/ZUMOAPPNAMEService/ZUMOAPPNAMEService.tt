@@ -104,6 +104,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.AspNet.WebApi.Core")#>\System.Web.Http.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Cors">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.AspNet.Cors")#>\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors">
+      <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.AspNet.WebApi.Cors")#>\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Http.OData">
       <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.AspNet.WebApi.OData")#>\System.Web.Http.OData.dll</HintPath>
     </Reference>
