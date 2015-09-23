@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,7 +25,7 @@
 		03D1006816ED41D20005A1A9 /* connected144.png in Resources */ = {isa = PBXBuildFile; fileRef = 03D1006416ED41D20005A1A9 /* connected144.png */; };
 		689C609F1A5F3F4D00E96D29 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 689C609E1A5F3F4D00E96D29 /* CoreData.framework */; };
 		689C60A41A5F4D1B00E96D29 /* QSTodoDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 689C60A21A5F4D1B00E96D29 /* QSTodoDataModel.xcdatamodeld */; };
-		68C7C4421A5F3ED900AD97AE /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C7C4411A5F3ED900AD97AE /* WindowsAzureMobileServices.framework */; };
+		A3C1F9E71BB0C395004900D7 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C1F9E61BB0C395004900D7 /* WindowsAzureMobileServices.framework */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +53,7 @@
 		03D1006416ED41D20005A1A9 /* connected144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connected144.png; sourceTree = "<group>"; };
 		689C609E1A5F3F4D00E96D29 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		689C60A31A5F4D1B00E96D29 /* QSTodoDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QSTodoDataModel.xcdatamodel; sourceTree = "<group>"; };
-		68C7C4411A5F3ED900AD97AE /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
+		A3C1F9E61BB0C395004900D7 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +64,8 @@
 				689C609F1A5F3F4D00E96D29 /* CoreData.framework in Frameworks */,
 				03D1001E16EC579A0005A1A9 /* UIKit.framework in Frameworks */,
 				03D1002016EC579A0005A1A9 /* Foundation.framework in Frameworks */,
-				68C7C4421A5F3ED900AD97AE /* WindowsAzureMobileServices.framework in Frameworks */,
 				03D1002216EC579A0005A1A9 /* CoreGraphics.framework in Frameworks */,
+				A3C1F9E71BB0C395004900D7 /* WindowsAzureMobileServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,8 +92,8 @@
 		03D1001C16EC579A0005A1A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A3C1F9E61BB0C395004900D7 /* WindowsAzureMobileServices.framework */,
 				689C609E1A5F3F4D00E96D29 /* CoreData.framework */,
-				68C7C4411A5F3ED900AD97AE /* WindowsAzureMobileServices.framework */,
 				03D1001D16EC579A0005A1A9 /* UIKit.framework */,
 				03D1001F16EC579A0005A1A9 /* Foundation.framework */,
 				03D1002116EC579A0005A1A9 /* CoreGraphics.framework */,
@@ -162,11 +162,11 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = QS;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = MobileServices;
 			};
 			buildConfigurationList = 03D1001516EC579A0005A1A9 /* Build configuration list for PBXProject "ZUMOAPPNAME" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -242,6 +242,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -253,7 +255,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -278,7 +280,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -297,7 +299,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZUMOAPPNAME/ZUMOAPPNAME-Prefix.pch";
 				INFOPLIST_FILE = "ZUMOAPPNAME/ZUMOAPPNAME-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MobileServices.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -315,7 +318,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZUMOAPPNAME/ZUMOAPPNAME-Prefix.pch";
 				INFOPLIST_FILE = "ZUMOAPPNAME/ZUMOAPPNAME-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MobileServices.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8st-Q2-1ux">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8st-Q2-1ux">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Azure Mobile Services-->
@@ -14,14 +15,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="xtB-im-W7s" style="IBUITableViewCellStyleDefault" id="nsK-Da-6ym">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nsK-Da-6ym" id="WJg-MQ-TxZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xtB-im-W7s">
-                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -47,16 +48,14 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                     <connections>
-                        <segue destination="jv0-OX-F4r" kind="popoverPresentation" identifier="addItem" popoverAnchorBarButtonItem="8eL-ww-Tlx" id="ueo-BO-61R">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                        </segue>
+                        <segue destination="jv0-OX-F4r" kind="show" identifier="addItem" id="ueo-BO-61R"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sn7-zH-IVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2175" y="168.75"/>
+            <point key="canvasLocation" x="2153" y="162"/>
         </scene>
-        <!--Title-->
+        <!--Add Item-->
         <scene sceneID="RI1-O5-vZS">
             <objects>
                 <viewController id="jv0-OX-F4r" customClass="ToDoItemViewController" customModule="ZUMOAPPNAME" customModuleProvider="target" sceneMemberID="viewController">
@@ -65,46 +64,41 @@
                         <viewControllerLayoutGuide type="bottom" id="Y3o-yZ-mzd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mGp-j0-8vu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QKC-x5-oUu">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="Add Item" id="SJ5-QN-NSK">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="FDU-Sm-nwU">
-                                            <connections>
-                                                <action selector="cancelPressed:" destination="jv0-OX-F4r" id="2Bl-Tj-gds"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="zEt-BE-m45">
-                                            <connections>
-                                                <action selector="savePressed:" destination="jv0-OX-F4r" id="j1d-cu-lBw"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3pO-Tr-BjV">
-                                <rect key="frame" x="20" y="84" width="280" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3pO-Tr-BjV">
+                                <rect key="frame" x="20" y="84" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3pO-Tr-BjV" firstAttribute="leading" secondItem="mGp-j0-8vu" secondAttribute="leadingMargin" id="9ch-af-gXZ"/>
+                            <constraint firstItem="3pO-Tr-BjV" firstAttribute="trailing" secondItem="mGp-j0-8vu" secondAttribute="trailingMargin" id="cCk-Kt-pFo"/>
+                            <constraint firstItem="3pO-Tr-BjV" firstAttribute="top" secondItem="eKr-eJ-C44" secondAttribute="bottom" constant="20" id="q97-kG-10R"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Ehe-IF-7d2">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ATB-z1-OcR"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="KCE-cY-hX9"/>
+                    <navigationItem key="navigationItem" title="Add Item" id="f2a-w1-PKf">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="U5u-jY-2G5">
+                            <connections>
+                                <action selector="cancelPressed:" destination="jv0-OX-F4r" id="yuR-dZ-UOt"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="DPq-YJ-QHv">
+                            <connections>
+                                <action selector="savePressed:" destination="jv0-OX-F4r" id="H0f-iN-Dje"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="NavBar" destination="QKC-x5-oUu" id="9fQ-4f-vdP"/>
-                        <outlet property="text" destination="3pO-Tr-BjV" id="UF8-Uo-vOi"/>
+                        <outlet property="text" destination="3pO-Tr-BjV" id="rSS-Nl-01C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MmN-xB-6h2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2968.125" y="168.75"/>
+            <point key="canvasLocation" x="2886" y="168"/>
         </scene>
         <!--Azure Mobile Services-->
         <scene sceneID="yNt-7v-plj">
@@ -114,6 +108,12 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Cf-GE-u1S">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.27058823529411763" green="0.69411764705882351" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="20"/>
+                            <color key="textColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
