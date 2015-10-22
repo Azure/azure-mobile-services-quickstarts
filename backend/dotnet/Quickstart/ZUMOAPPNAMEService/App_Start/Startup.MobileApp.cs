@@ -26,7 +26,7 @@ namespace ZUMOAPPNAMEService
             Database.SetInitializer(new ZUMOAPPNAMEInitializer());
 
             // To prevent Entity Framework from modifying your database schema, use a null database initializer
-            // Database.SetInitializer(null);
+            // Database.SetInitializer<ZUMOAPPNAMEContext>(null);
 
             app.UseMobileAppAuthentication(config);
             app.UseWebApi(config);
