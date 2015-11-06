@@ -30,7 +30,7 @@ namespace ZUMOAPPNAME
         private async Task InsertTodoItem(TodoItem todoItem)
         {
             // This code inserts a new TodoItem into the database. When the operation completes
-            // and Mobile Services has assigned an Id, the item is added to the CollectionView
+            // and Mobile App backend has assigned an Id, the item is added to the CollectionView.
             await todoTable.InsertAsync(todoItem);
             items.Add(todoItem);
 
@@ -43,7 +43,7 @@ namespace ZUMOAPPNAME
             try
             {
                 // This code refreshes the entries in the list view by querying the TodoItems table.
-                // The query excludes completed TodoItems
+                // The query excludes completed TodoItems.
                 items = await todoTable
                     .Where(todoItem => todoItem.Complete == false)
                     .ToCollectionAsync();
@@ -66,8 +66,8 @@ namespace ZUMOAPPNAME
 
         private async Task UpdateCheckedTodoItem(TodoItem item)
         {
-            // This code takes a freshly completed TodoItem and updates the database. When the MobileService 
-            // responds, the item is removed from the list 
+            // This code takes a freshly completed TodoItem and updates the database. When the service 
+            // responds, the item is removed from the list.
             await todoTable.UpdateAsync(item);
             items.Remove(item);
             ListItems.Focus(Windows.UI.Xaml.FocusState.Unfocused);
