@@ -33,9 +33,7 @@ namespace ZUMOAPPNAME
         public TodoItemManager()
         {
             this.client = new MobileServiceClient(
-                Constants.ApplicationURL,
-                Constants.GatewayURL,
-                string.Empty);
+                Constants.ApplicationURL);
 
 #if OFFLINE_SYNC_ENABLED
             var store = new MobileServiceSQLiteStore("localstore.db");
