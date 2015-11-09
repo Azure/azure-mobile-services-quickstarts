@@ -14,11 +14,13 @@ namespace ZUMOAPPNAMEService.Controllers
         public string Get()
         {
             MobileAppSettingsDictionary settings = this.Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
-
             ITraceWriter traceWriter = this.Configuration.Services.GetTraceWriter();
-            traceWriter.Info("Hello from " + settings.Name);
 
-            return "Hello World!";
+            string host = settings.HostName ?? "localhost";
+            string greeting = "Hello from " + host;
+            
+            traceWriter.Info(greeting);
+            return greeting;
         }
 
         // POST api/values
