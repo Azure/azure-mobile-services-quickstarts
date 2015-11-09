@@ -5,7 +5,7 @@
   "author": "Microsoft",
   "dependencies": {
     "express": "^4.13.0",
-    "azure-mobile-apps": "^2.0.0-alpha3"
+    "azure-mobile-apps": "^2.0.0-alpha4"
   },
   "devDependencies": {}
 }
