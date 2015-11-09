@@ -1,0 +1,11 @@
+{
+  "name": "azure-mobile-apps.samples",
+  "version": "0.0.0",
+  "description": "Samples for Azure Mobile Apps",
+  "author": "Microsoft",
+  "dependencies": {
+    "express": "^4.13.0",
+    "azure-mobile-apps": "^2.0.0-alpha3"
+  },
+  "devDependencies": {}
+}
