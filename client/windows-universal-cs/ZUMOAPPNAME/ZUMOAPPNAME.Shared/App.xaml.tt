@@ -30,9 +30,7 @@ namespace ZUMOAPPNAME
         // This MobileServiceClient has been configured to communicate with the Azure Mobile App.
         // You're all set to start working with your Mobile App!
         public static MobileServiceClient MobileService = new MobileServiceClient(
-            "ZUMOAPPURL",
-            "ZUMOGATEWAYURL",
-            "ZUMOAPPKEY"
+            "ZUMOAPPURL"            
         );
 
 <# if (Runtime=="DOTNET") { #>
