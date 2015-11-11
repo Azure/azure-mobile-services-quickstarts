@@ -13,8 +13,8 @@
 		A2D9CBCE1943C2540017F096 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2D9CBCD1943C2540017F096 /* Images.xcassets */; };
 		A2D9CBE41943C39D0017F096 /* ToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D9CBE31943C39D0017F096 /* ToDoTableViewController.swift */; };
 		A2E767C6194594DC00869113 /* ToDoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E767C5194594DC00869113 /* ToDoItemViewController.swift */; };
-		A3016E081BB0CB3C00C67C72 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3016E071BB0CB3C00C67C72 /* WindowsAzureMobileServices.framework */; settings = {ASSET_TAGS = (); }; };
-		A3016E0A1BB0D11700C67C72 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3016E091BB0D11700C67C72 /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
+		A31A89F11BF3F78A00C7B656 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A31A89F01BF3F78A00C7B656 /* WindowsAzureMobileServices.framework */; };
+		A31A89F71BF3FDFA00C7B656 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A31A89F61BF3FDFA00C7B656 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +27,8 @@
 		A2D9CBE31943C39D0017F096 /* ToDoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableViewController.swift; sourceTree = "<group>"; };
 		A2D9CBE81943D1340017F096 /* ZUMOAPPNAME-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZUMOAPPNAME-Bridging-Header.h"; sourceTree = "<group>"; };
 		A2E767C5194594DC00869113 /* ToDoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoItemViewController.swift; sourceTree = "<group>"; };
-		A3016E071BB0CB3C00C67C72 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
-		A3016E091BB0D11700C67C72 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		A31A89F01BF3F78A00C7B656 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
+		A31A89F61BF3FDFA00C7B656 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3016E081BB0CB3C00C67C72 /* WindowsAzureMobileServices.framework in Frameworks */,
+				A31A89F11BF3F78A00C7B656 /* WindowsAzureMobileServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,7 +46,6 @@
 		A2D9CBB51943C2540017F096 = {
 			isa = PBXGroup;
 			children = (
-				A3016E091BB0D11700C67C72 /* Default-568h@2x.png */,
 				A2D9CBC01943C2540017F096 /* ZUMOAPPNAME */,
 				A2D9CBBF1943C2540017F096 /* Products */,
 			);
@@ -72,6 +71,7 @@
 				A2E767C5194594DC00869113 /* ToDoItemViewController.swift */,
 				A2D9CBE51943CB520017F096 /* frameworks */,
 				A2D9CBE81943D1340017F096 /* ZUMOAPPNAME-Bridging-Header.h */,
+				A31A89F61BF3FDFA00C7B656 /* Launch Screen.storyboard */,
 			);
 			path = ZUMOAPPNAME;
 			sourceTree = "<group>";
@@ -87,7 +87,7 @@
 		A2D9CBE51943CB520017F096 /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A3016E071BB0CB3C00C67C72 /* WindowsAzureMobileServices.framework */,
+				A31A89F01BF3F78A00C7B656 /* WindowsAzureMobileServices.framework */,
 			);
 			name = frameworks;
 			path = ..;
@@ -154,7 +154,7 @@
 			files = (
 				A2D9CBCC1943C2540017F096 /* Main.storyboard in Resources */,
 				A2D9CBCE1943C2540017F096 /* Images.xcassets in Resources */,
-				A3016E0A1BB0D11700C67C72 /* Default-568h@2x.png in Resources */,
+				A31A89F71BF3FDFA00C7B656 /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

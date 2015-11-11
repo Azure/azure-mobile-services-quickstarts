@@ -79,7 +79,7 @@
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"complete == NO"];
     
     // sort by item text
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"ms_createdAt" ascending:YES]];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES]];
 
     // Note: if storing a lot of data, you should specify a cache for the last parameter
     // for more information, see Apple's documentation: http://go.microsoft.com/fwlink/?LinkId=524591&clcid=0x409
@@ -115,7 +115,7 @@
     NSManagedObject *item = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     // map to a dictionary to pass to Mobile Services SDK
-    NSDictionary *dict = [MSCoreDataStore tableItemFromManagedObject:item];
+    NSDictionary *dict = [self.todoService.store tableItemFromManagedObject:item];
     
     // Change the appearance to look greyed out until we remove the item
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];

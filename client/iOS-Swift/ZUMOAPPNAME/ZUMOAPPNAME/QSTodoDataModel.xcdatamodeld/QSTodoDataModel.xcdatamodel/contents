@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Xcode 4.3">
     <entity name="MS_TableConfig" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
@@ -22,17 +22,16 @@
     </entity>
     <entity name="TodoItem" syncable="YES">
         <attribute name="complete" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="ms_createdAt" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="ms_deleted" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="ms_updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="ms_version" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="MS_TableConfig" positionX="-72" positionY="18" width="128" height="30"/>
         <element name="MS_TableOperationErrors" positionX="16" positionY="-54" width="128" height="30"/>
         <element name="MS_TableOperations" positionX="-72" positionY="54" width="128" height="30"/>
-        <element name="TodoItem" positionX="-153" positionY="-81" width="128" height="150"/>
+        <element name="TodoItem" positionX="-153" positionY="-81" width="128" height="135"/>
     </elements>
 </model>
