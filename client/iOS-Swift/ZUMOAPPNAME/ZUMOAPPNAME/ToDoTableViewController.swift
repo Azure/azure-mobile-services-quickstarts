@@ -159,7 +159,12 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
         
         // Set the label on the cell and make sure the label color is black (in case this cell
         // has been reused and was previously greyed out
-        cell.textLabel!.text = (item.valueForKey("text") as! String)
+        if let text = item.valueForKey("text") as? String {
+            cell.textLabel!.text = text
+        } else {
+            cell.textLabel!.text = "?"
+        }
+        
         cell.textLabel!.textColor = UIColor.blackColor()
         
         return cell
