@@ -20,6 +20,8 @@ import CoreData
 class ToDoTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, ToDoItemDelegate {
     
     var table : MSSyncTable?
+    var store : MSCoreDataStore?
+    
     lazy var fetchedResultController: NSFetchedResultsController = {
         let fetchRequest = NSFetchRequest(entityName: "TodoItem")
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
@@ -28,7 +30,7 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
         fetchRequest.predicate = NSPredicate(format: "complete != true")
         
         // sort by item text
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "ms_createdAt", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
         
         // Note: if storing a lot of data, you should specify a cache for the last parameter
         // for more information, see Apple's documentation: http://go.microsoft.com/fwlink/?LinkId=524591&clcid=0x409
@@ -43,11 +45,10 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let client = MSClient(applicationURLString: "ZUMOAPPURL", gatewayURLString: "ZUMOGATEWAYURL", applicationKey: "ZUMOAPPKEY")
+        let client = MSClient(applicationURLString: "ZUMOAPPURL")
         let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
-        let store = MSCoreDataStore(managedObjectContext: managedObjectContext)
-        client.syncContext = MSSyncContext(delegate: nil, dataSource: store, callback: nil)
-        
+        self.store = MSCoreDataStore(managedObjectContext: managedObjectContext)
+        client.syncContext = MSSyncContext(delegate: nil, dataSource: self.store, callback: nil)
         self.table = client.syncTableWithName("TodoItem")
         self.refreshControl?.addTarget(self, action: "onRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         
@@ -121,8 +122,7 @@ class ToDoTableViewController: UITableViewController, NSFetchedResultsController
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
     {
         let record = self.fetchedResultController.objectAtIndexPath(indexPath) as! NSManagedObject
-        var item = MSCoreDataStore.tableItemFromManagedObject(record)
-        
+        var item = self.store!.tableItemFromManagedObject(record)
         item["complete"] = true
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true

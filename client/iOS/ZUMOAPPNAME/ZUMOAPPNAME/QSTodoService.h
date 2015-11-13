@@ -27,7 +27,8 @@ typedef void (^QSCompletionBlock) ();
 
 @interface QSTodoService : NSObject
 
-@property (nonatomic, strong)   MSClient *client;
+@property (nonatomic, strong) MSClient *client;
+@property (nonatomic, strong) MSCoreDataStore *store;
 
 + (QSTodoService *)defaultService;
 
