@@ -13,8 +13,6 @@ namespace ZUMOAPPNAME
         static QSTodoService instance = new QSTodoService ();
 
         const string applicationURL = @"ZUMOAPPURL";
-        const string gatewayURL = @"ZUMOGATEWAYURL";
-        const string applicationKey = @"ZUMOAPPKEY";
         const string localDbPath    = "localstore.db";
 
         private MobileServiceClient client;
@@ -26,7 +24,7 @@ namespace ZUMOAPPNAME
             SQLitePCL.CurrentPlatform.Init(); 
 
             // Initialize the Mobile Service client with the Mobile App URL, Gateway URL and key
-            client = new MobileServiceClient (applicationURL, gatewayURL, applicationKey);
+            client = new MobileServiceClient (applicationURL);
 
             // Create an MSTable instance to allow us to work with the TodoItem table
             todoTable = client.GetSyncTable <ToDoItem> ();
