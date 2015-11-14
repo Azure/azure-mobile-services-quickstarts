@@ -24,15 +24,12 @@
     <add name="MS_NotificationHubConnectionString" connectionString="Endpoint=sb://[your namespace].servicebus.windows.net;SharedSecretIssuer=owner;SharedSecretValue=[your secret]"/>
   </connectionStrings>
   <appSettings>
-
-    <add key="PreserveLoginUrl" value="true" />
-
     <!-- Use these settings for local development. After publishing to your
     Mobile App, these settings will be overridden by the values specified
     in the portal. -->
-    <add key="MS_MobileServiceName" value="ZUMOAPPNAME" />
-    <add key="MS_SigningKey" value="Overridden by portal settings" />
-    <add key="EMA_RuntimeUrl" value="ZUMOGATEWAYURL" />
+    <add key="SigningKey" value="Use App Service Authentication Signing Key here to validate tokens" />
+    <add key="ValidAudience" value="https://{yoursite}.azurewebsites.net/" />
+    <add key="ValidIssuer" value="https://{yoursite}.azurewebsites.net/" />
   </appSettings>
   <system.web>
     <httpRuntime targetFramework="4.5" />

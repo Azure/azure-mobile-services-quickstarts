@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Web.Http;
+using Microsoft.Azure.Mobile.Server;
+using Microsoft.Azure.Mobile.Server.Authentication;
 using Microsoft.Azure.Mobile.Server.Config;
 using ZUMOAPPNAMEService.DataObjects;
 using ZUMOAPPNAMEService.Models;
@@ -28,8 +31,20 @@ namespace ZUMOAPPNAMEService
             // To prevent Entity Framework from modifying your database schema, use a null database initializer
             // Database.SetInitializer<ZUMOAPPNAMEContext>(null);
 
-            // Uncomment the line below to use App Service Authentication during development
-            // app.UseAppServiceAuthentication(config, AppServiceAuthenticationMode.LocalOnly);
+            MobileAppSettingsDictionary settings = config.GetMobileAppSettingsProvider().GetMobileAppSettings();
+
+            if (string.IsNullOrEmpty(settings.HostName))
+            {
+                // This middleware is intended to be used locally for debugging. By default, HostName will
+                // only have a value when running in an App Service application.
+                app.UseAppServiceAuthentication(new AppServiceAuthenticationOptions
+                {
+                    SigningKey = ConfigurationManager.AppSettings["SigningKey"],
+                    ValidAudiences = new[] { ConfigurationManager.AppSettings["ValidAudience"] },
+                    ValidIssuers = new[] { ConfigurationManager.AppSettings["ValidIssuer"] },
+                    TokenHandler = config.GetMobileAppTokenHandler()
+                });
+            }
             app.UseWebApi(config);
         }
     }
