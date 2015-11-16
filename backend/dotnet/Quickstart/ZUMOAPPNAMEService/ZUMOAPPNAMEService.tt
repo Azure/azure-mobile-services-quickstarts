@@ -108,6 +108,7 @@
       <HintPath><#= this.GetHintPath(nugetPackages, "Microsoft.Azure.NotificationHubs", "net45-full")#>\Microsoft.Azure.NotificationHubs.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Net.Http" />
