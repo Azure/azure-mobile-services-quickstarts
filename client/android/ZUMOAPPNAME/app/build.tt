@@ -3,13 +3,13 @@
 <#@ output extension=".gradle" #>
 apply plugin: 'com.android.application'
 android {
-    compileSdkVersion 20
-    buildToolsVersion "19.1.0"
+    compileSdkVersion 23
+    buildToolsVersion '23.0.0'
 
     defaultConfig {
         applicationId "com.example.zumoappname"
-        minSdkVersion 8
-        targetSdkVersion 20
+        minSdkVersion 9
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
@@ -31,6 +31,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.google.code.gson:gson:2.3'
     compile 'com.google.guava:guava:18.0'
+	compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'com.microsoft.azure:azure-mobile-services-android-sdk:<#=AndroidSDKVersion#>'
 	compile (group: 'com.microsoft.azure', name: 'azure-notifications-handler', version: '1.0.1', ext: 'jar')
 }

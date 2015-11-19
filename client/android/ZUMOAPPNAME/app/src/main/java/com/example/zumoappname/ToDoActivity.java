@@ -92,7 +92,6 @@ public class ToDoActivity extends Activity {
             // Mobile Service URL and key
             mClient = new MobileServiceClient(
                     "ZUMOAPPURL",
-                    "ZUMOAPPKEY",
                     this).withFilter(new ProgressFilter());
 
             // Get the Mobile Service Table instance to use
