@@ -47,7 +47,7 @@
       <SourcePath>android</SourcePath>
       <ZipFileName>Android_Java.zip</ZipFileName>
     </QuickStart>
-	
+
     <QuickStart Include="Windows_Universal_JS">
       <Runtime>Node</Runtime>
       <SourcePath>windows-universal-js</SourcePath>
@@ -278,11 +278,11 @@
 
     <!-- Copy iOS SDK -->
     <ItemGroup>
-      <iOSSDK Include="$(SDKRootPath)\packages\iOS\WindowsAzureMobileServices.framework\**\*.*" />
+      <iOSSDK Include="$(SDKRootPath)\packages\iOS\MicrosoftAzureMobile.framework\**\*.*" />
     </ItemGroup>
     <Copy SourceFiles="@(iOSSDK)"
           Condition="'$(QuickStartRuntime)' == 'iOS'"
-          DestinationFiles="@(iOSSDK->'$(QuickStartOutputDirectory)\ZUMOAPPNAME\WindowsAzureMobileServices.framework\%(RecursiveDir)%(Filename)%(Extension)')"/>
+          DestinationFiles="@(iOSSDK->'$(QuickStartOutputDirectory)\ZUMOAPPNAME\MicrosoftAzureMobile.framework\%(RecursiveDir)%(Filename)%(Extension)')"/>
 
     <!-- Delete any .tt & .gitignore files -->
     <ItemGroup>
