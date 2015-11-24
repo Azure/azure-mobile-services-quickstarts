@@ -7,5 +7,5 @@
   <package id="Microsoft.Bcl.Build" version="1.0.14" targetFramework="win81" />
   <package id="Microsoft.Net.Http" version="2.2.28" targetFramework="win81" />
   <package id="Newtonsoft.Json" version="6.0.4" targetFramework="win81" />
-  <package id="WindowsAzure.MobileServices" version="<#= ManagedSDKVersion #>" targetFramework="win81" />
+  <package id="Microsoft.Azure.Mobile.Client" version="<#= ManagedSDKVersion #>" targetFramework="win81" />
 </packages>
