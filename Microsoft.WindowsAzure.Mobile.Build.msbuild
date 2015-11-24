@@ -135,8 +135,8 @@
     <Exec Command='"$(NugetExe)" install 7-Zip.CommandLine -source $(DefaultNugetPackageSource) -o "$(MSBuildProjectDirectory)\packages" -Version 9.20.0' LogStandardErrorAsError="true" />
 
     <Exec Command='"$(NugetExe)" install Microsoft.Azure.Mobile.Server.Quickstart -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\dotnet\packages"' LogStandardErrorAsError="true" />
-    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices -Prerelease -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sdk"' LogStandardErrorAsError="true" />
-    <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.SQLiteStore -Prerelease -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sqllitestore"' LogStandardErrorAsError="true" />
+    <Exec Command='"$(NugetExe)" install Microsoft.Azure.Mobile.Client -Prerelease -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sdk"' LogStandardErrorAsError="true" />
+    <Exec Command='"$(NugetExe)" install Microsoft.Azure.Mobile.Client.SQLiteStore -Prerelease -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages\sqllitestore"' LogStandardErrorAsError="true" />
     <Exec Command='"$(NugetExe)" install WindowsAzure.MobileServices.WinJS -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\packages"' LogStandardErrorAsError="true" />
     <Exec Command='"$(NugetExe)" install "$(MSBuildProjectDirectory)\backend\try-mobile-apps\packages.config" -source $(NugetPackageSource) -o "$(MSBuildProjectDirectory)\backend\try-mobile-apps\packages"' LogStandardErrorAsError="true" />
 
@@ -147,12 +147,12 @@
 
   <Target Name="BuildQuickStarts">
     <!--Find NugetVersion from NugetPackages-->
-    <GetNugetVersion PackageDirectory="$(MSBuildProjectDirectory)\packages\sdk" NugetId="WindowsAzure.MobileServices*" >
+    <GetNugetVersion PackageDirectory="$(MSBuildProjectDirectory)\packages\sdk" NugetId="Microsoft.Azure.Mobile.Client*" >
       <Output TaskParameter="NugetVersion" PropertyName="SDKPackageVersion" />
     </GetNugetVersion>
     <Message Text="SDKPackageVersion = $(SDKPackageVersion)" />
 
-    <GetNugetVersion PackageDirectory="$(MSBuildProjectDirectory)\packages\sqllitestore" NugetId="WindowsAzure.MobileServices.SQLiteStore*">
+    <GetNugetVersion PackageDirectory="$(MSBuildProjectDirectory)\packages\sqllitestore" NugetId="Microsoft.Azure.Mobile.Client.SQLiteStore*">
       <Output TaskParameter="NugetVersion" PropertyName="StorePackageVersion" />
     </GetNugetVersion>
     <Message Text="StorePackageVersion = $(StorePackageVersion)" />
