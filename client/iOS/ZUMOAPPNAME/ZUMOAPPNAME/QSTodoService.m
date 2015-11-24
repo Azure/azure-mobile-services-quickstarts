@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import <MicrosoftAzureMobile/MicrosoftAzureMobile.h>
 #import "QSTodoService.h"
 #import "QSAppDelegate.h"
 
