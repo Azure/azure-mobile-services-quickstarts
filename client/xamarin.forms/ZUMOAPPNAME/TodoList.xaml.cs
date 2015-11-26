@@ -12,7 +12,7 @@ namespace ZUMOAPPNAME
         {
             InitializeComponent();
 
-            manager = new TodoItemManager();
+            manager = TodoItemManager.DefaultManager;
 
             // OnPlatform<T> doesn't currently support the "Windows" target platform, so we have this check here.
             if (manager.IsOfflineEnabled &&

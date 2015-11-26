@@ -22,6 +22,7 @@ namespace ZUMOAPPNAME
 {
     public partial class TodoItemManager
     {
+        static TodoItemManager defaultInstance = new TodoItemManager();
         MobileServiceClient client;
 
 #if OFFLINE_SYNC_ENABLED
@@ -30,7 +31,7 @@ namespace ZUMOAPPNAME
         IMobileServiceTable<TodoItem> todoTable;
 #endif
 
-        public TodoItemManager()
+        private TodoItemManager()
         {
             this.client = new MobileServiceClient(
                 Constants.ApplicationURL);
@@ -46,6 +47,23 @@ namespace ZUMOAPPNAME
 #else
             this.todoTable = client.GetTable<TodoItem>();
 #endif
+        }
+
+        public static TodoItemManager DefaultManager
+        {
+            get
+            {
+                return defaultInstance;
+            }
+            private set
+            {
+                defaultInstance = value;
+            }
+        }
+
+        public MobileServiceClient CurrentClient
+        {
+            get { return client; }
         }
 
         public bool IsOfflineEnabled
