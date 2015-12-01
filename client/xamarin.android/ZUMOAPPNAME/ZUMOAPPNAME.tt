@@ -26,6 +26,7 @@
     <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
+	<Debugger>Xamarin</Debugger>
     <JavaMaximumHeapSize />
     <JavaOptions />
   </PropertyGroup>
