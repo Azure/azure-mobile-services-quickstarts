@@ -7,18 +7,16 @@ using System.Web.Http.OData;
 using Microsoft.Azure.Mobile.Server;
 using TryMobileAppsService.DataObjects;
 using TryMobileAppsService.Models;
-using Microsoft.Azure.Mobile.Security;
 
 namespace TryMobileAppsService.Controllers
 {
-    [AuthorizeLevel(AuthorizationLevel.Anonymous)]
     public class TodoItemController : TableController<TodoItem>
     {
         protected override void Initialize(HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
             TryMobileAppsContext context = new TryMobileAppsContext();
-            DomainManager = new EntityDomainManager<TodoItem>(context, Request, Services);
+            DomainManager = new EntityDomainManager<TodoItem>(context, Request);
         }
 
         // GET tables/TodoItem
