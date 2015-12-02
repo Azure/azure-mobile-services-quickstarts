@@ -117,10 +117,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.WindowsAzure.Mobile">
-      <HintPath>..\packages\WindowsAzure.MobileServices.<#= ManagedSDKVersion #>\lib\wpa81\Microsoft.WindowsAzure.Mobile.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Client.<#= ManagedSDKVersion #>\lib\wpa81\Microsoft.WindowsAzure.Mobile.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Mobile.Ext">
-      <HintPath>..\packages\WindowsAzure.MobileServices.<#= ManagedSDKVersion #>\lib\wpa81\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Client.<#= ManagedSDKVersion #>\lib\wpa81\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
