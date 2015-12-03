@@ -58,10 +58,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Mobile">
-      <HintPath>..\packages\WindowsAzure.MobileServices.<#= ManagedSDKVersion #>\lib\monoandroid\Microsoft.WindowsAzure.Mobile.dll</HintPath>  
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Client.<#= ManagedSDKVersion #>\lib\monoandroid\Microsoft.WindowsAzure.Mobile.dll</HintPath>  
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Mobile.Ext">
-      <HintPath>..\packages\WindowsAzure.MobileServices.<#= ManagedSDKVersion #>\lib\monoandroid\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.Mobile.Client.<#= ManagedSDKVersion #>\lib\monoandroid\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
