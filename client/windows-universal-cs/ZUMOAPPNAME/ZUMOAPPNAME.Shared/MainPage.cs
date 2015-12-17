@@ -27,6 +27,12 @@ namespace ZUMOAPPNAME
             this.InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            //await InitLocalStoreAsync(); // offline sync
+            ButtonRefresh_Click(this, null);
+        }
+
         private async Task InsertTodoItem(TodoItem todoItem)
         {
             // This code inserts a new TodoItem into the database. When the operation completes
@@ -96,12 +102,6 @@ namespace ZUMOAPPNAME
             CheckBox cb = (CheckBox)sender;
             TodoItem item = cb.DataContext as TodoItem;
             await UpdateCheckedTodoItem(item);
-        }
-
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
-        {
-            //await InitLocalStoreAsync(); // offline sync
-            await RefreshTodoItems();
         }
 
         #region Offline sync
