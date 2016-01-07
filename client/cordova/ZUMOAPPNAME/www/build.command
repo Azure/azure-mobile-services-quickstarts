@@ -1,13 +1,16 @@
-# Phonegap QS Build Script
+# Cordova QS Build Script
 # Installs the required plugins and builds the platforms supported when
 # using OSX.
 
-phonegap local plugin add com.microsoft.azure-mobile-services
+cordova plugin add cordova-plugin-ms-azure-mobile-apps 
 
 # Plugins required for push notifications
-# phonegap local plugin add org.apache.cordova.device
-# phonegap local plugin add https://github.com/phonegap-build/PushPlugin.git
+# cordova plugin add cordova-plugin-device
+# cordova plugin add https://github.com/phonegap/phonegap-plugin-push.git
 
-# Now build supported platforms
-phonegap local build android
-phonegap local build ios
+# Build supported platforms
+cordova platform add ios
+cordova build ios
+
+cordova platform add android
+cordova build android
