@@ -34,7 +34,7 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         
-        var client = new WindowsAzure.MobileServiceClient('ZUMOAPPURL', 'ZUMOAPPKEY');
+        var client = new WindowsAzure.MobileServiceClient('ZUMOAPPURL');
         todoItemTable = client.getTable('todoitem');
 
         // Read current data and rebuild UI.
