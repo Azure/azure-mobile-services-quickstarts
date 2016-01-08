@@ -1,15 +1,15 @@
-﻿# QuickStarts for Microsoft Azure Mobile Services
+﻿# QuickStarts for Microsoft Azure Mobile Apps
 
-With Microsoft Azure Mobile Services you can add a scalable backend to your connected client applications in minutes.
+With Microsoft Azure Mobile Apps you can add a scalable backend to your connected client applications in minutes.
 To learn more, visit our [Developer Center](http://azure.microsoft.com/en-us/develop/mobile/).
 
 ## Getting Started
 
-If you are new to Mobile Services, you can get started by following our tutorials for connecting your Mobile
-Services cloud backend to [Windows Store apps](http://azure.microsoft.com/en-us/documentation/articles/mobile-services-windows-store-get-started/),
-[Windows Phone 8 apps](http://azure.microsoft.com/en-us/documentation/articles/mobile-services-windows-phone-get-started/),
-[iOS apps](http://azure.microsoft.com/en-us/documentation/articles/mobile-services-ios-get-started/),
-and [Android apps](http://azure.microsoft.com/en-us/documentation/articles/mobile-services-android-get-started/).
+If you are new to Mobile Apps, you can get started by following our tutorials for connecting your Mobile
+Apps cloud backend to [Windows Store apps](https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-windows-store-dotnet-get-started/),
+[Windows Phone 8 apps](https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-windows-store-dotnet-get-started/),
+[iOS apps](https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-ios-get-started/),
+and [Android apps](https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-android-get-started/).
 
 ## Download Source Code
 
