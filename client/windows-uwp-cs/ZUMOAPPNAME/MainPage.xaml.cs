@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using System;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.MobileServices;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -16,10 +14,10 @@ using Windows.UI.Xaml.Navigation;
 
 namespace ZUMOAPPNAME
 {
-    sealed partial class MainPage: Page
+    public sealed partial class MainPage : Page
     {
         private MobileServiceCollection<TodoItem, TodoItem> items;
-        private IMobileServiceTable<TodoItem> todoTable = App.MobileService.GetTable<TodoItem>();
+        private IMobileServiceTable<TodoItem> todoTable = App.MobileService.GetTable<TodoItem>(); 
         //private IMobileServiceSyncTable<TodoItem> todoTable = App.MobileService.GetSyncTable<TodoItem>(); // offline sync
 
         public MainPage()
@@ -36,11 +34,11 @@ namespace ZUMOAPPNAME
         private async Task InsertTodoItem(TodoItem todoItem)
         {
             // This code inserts a new TodoItem into the database. When the operation completes
-            // and Mobile App backend has assigned an Id, the item is added to the CollectionView.
+            // and Mobile Services has assigned an Id, the item is added to the CollectionView
             await todoTable.InsertAsync(todoItem);
             items.Add(todoItem);
 
-            //await SyncAsync(); // offline sync
+            //await App.MobileService.SyncContext.PushAsync(); // offline sync
         }
 
         private async Task RefreshTodoItems()
@@ -49,7 +47,7 @@ namespace ZUMOAPPNAME
             try
             {
                 // This code refreshes the entries in the list view by querying the TodoItems table.
-                // The query excludes completed TodoItems.
+                // The query excludes completed TodoItems
                 items = await todoTable
                     .Where(todoItem => todoItem.Complete == false)
                     .ToCollectionAsync();
@@ -72,13 +70,13 @@ namespace ZUMOAPPNAME
 
         private async Task UpdateCheckedTodoItem(TodoItem item)
         {
-            // This code takes a freshly completed TodoItem and updates the database. When the service 
-            // responds, the item is removed from the list.
+            // This code takes a freshly completed TodoItem and updates the database. When the MobileService 
+            // responds, the item is removed from the list 
             await todoTable.UpdateAsync(item);
             items.Remove(item);
             ListItems.Focus(Windows.UI.Xaml.FocusState.Unfocused);
 
-            //await SyncAsync(); // offline sync
+            //await App.MobileService.SyncContext.PushAsync(); // offline sync
         }
 
         private async void ButtonRefresh_Click(object sender, RoutedEventArgs e)
@@ -94,6 +92,7 @@ namespace ZUMOAPPNAME
         private async void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             var todoItem = new TodoItem { Text = TextInput.Text };
+            TextInput.Text = "";
             await InsertTodoItem(todoItem);
         }
 
@@ -102,6 +101,13 @@ namespace ZUMOAPPNAME
             CheckBox cb = (CheckBox)sender;
             TodoItem item = cb.DataContext as TodoItem;
             await UpdateCheckedTodoItem(item);
+        }
+
+        private void TextInput_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter) {
+                ButtonSave.Focus(FocusState.Programmatic);
+            }
         }
 
         #region Offline sync

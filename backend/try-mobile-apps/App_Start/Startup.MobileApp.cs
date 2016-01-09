@@ -27,7 +27,7 @@ namespace TryMobileAppsService
         }
     }
 
-    public class TryMobileAppsInitializer : CreateDatabaseIfNotExists<TryMobileAppsContext>
+    public class TryMobileAppsInitializer : DropCreateDatabaseAlways<TryMobileAppsContext>
     {
         protected override void Seed(TryMobileAppsContext context)
         {
