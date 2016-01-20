@@ -1,9 +1,0 @@
-bin
-obj
-*.user
-*.suo
-*.sln.ide
-.vs
-App_Data
-*.results.xml
-/packages
