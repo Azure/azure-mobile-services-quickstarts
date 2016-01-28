@@ -1,1 +1,0 @@
-﻿To rebuild your project using Visual Studio Online, open a console and type "msbuild".
